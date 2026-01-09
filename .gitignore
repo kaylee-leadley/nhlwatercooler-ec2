@@ -24,3 +24,7 @@ uploads/
 cache/
 node_modules/
 vendor/
+
+# Runtime state / stamps (updates frequently)
+scripts/gameday-logs/state/
+*.stamp
