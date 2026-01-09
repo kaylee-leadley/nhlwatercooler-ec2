@@ -1,0 +1,94 @@
+/* assets/css/player-card.css */
+
+/* Row that contains the card inside the stats table */
+.player-card-row > td {
+  padding: 24px;
+  background: var(--page-card-header-bg);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* Base stats row states */
+.stats-row.is-expanded {
+  background: var(--accent-primary);
+}
+
+.stats-row.is-loading {
+  opacity: 0.6;
+}
+
+/* =========================
+   Card layout
+   ========================= */
+
+.player-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Header: avatar + name + meta */
+.player-card__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-card__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+
+.player-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.player-card__name {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.player-card__meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* =========================
+   Body fields
+   ========================= */
+
+/* 2-column responsive grid of fields */
+.player-card__body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px 40px;
+  font-size: 0.9rem;
+}
+
+/* Each field is a label + value pair */
+.player-card__row {
+  display: grid;
+  grid-template-columns: auto 1fr;  /* label, then value */
+  align-items: baseline;
+}
+
+.player-card__row .label {
+  color: var(--text-muted);
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+.player-card__row .value {
+  justify-self: start;             /* keeps value snug after label */
+}
+
+/* Stack fields nicely on narrow screens */
+@media (max-width: 768px) {
+  .player-card__body {
+    grid-template-columns: 1fr;
+  }
+}

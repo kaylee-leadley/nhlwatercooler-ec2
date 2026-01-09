@@ -1,0 +1,268 @@
+/* assets/css/main.css */
+
+/* ---------- Global base styles ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  line-height: 1.5;
+
+  /* Deep neutral backdrop (not team-colored); team color comes later
+     via site-main and accents */
+  background: var(--page-bg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* flex column so footer can pin to bottom */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Typography ---------- */
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+p {
+  margin: 0 0 0.75em;
+}
+
+ul {
+  margin: 0 0 0.75em 1.25em;
+  padding: 0;
+}
+li {
+  font-size:13.12px;
+  font-weight: 500;
+}
+
+/* ---------- Links ---------- */
+
+a {
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+/* a:hover {
+  color: var(--accent-primary);
+} */
+
+a:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* ---------- Images ---------- */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Shared components ---------- */
+
+.alert {
+  padding: 10px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.alert-error {
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+}
+
+/* ---------- Buttons (global) ---------- */
+
+button:not(.site-nav-toggle),
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.button {
+  background: var(--accent-primary);
+  color: #ffffff;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.2;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.12s ease-out,
+    border-color 0.12s ease-out,
+    color 0.12s ease-out,
+    transform 0.08s ease-out,
+    box-shadow 0.12s ease-out;
+}
+
+button:not(.site-nav-toggle):hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+.button:hover {
+  transform: translateY(-1px);
+  /* background: var(--accent-secondary);
+  color: var(--accent-primary); */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* Explicit primary button (same as default for consistency) */
+.button-primary {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary-border);
+  color: #ffffff;
+}
+
+/* Ghost / subtle button */
+.button-ghost {
+  background: transparent;
+  border-color: var(--chip-border);
+  color: var(--text-main);
+}
+
+.button-ghost:hover {
+  background: var(--accent-primary-soft);
+  border-color: var(--accent-primary-border);
+  color: var(--text-main);
+}
+
+/* Danger button */
+.button-danger {
+  background: var(--danger-bg);
+  border-color: var(--danger-border);
+  color: #ffe5e5;
+  font-weight: 600;
+}
+
+.button-danger:hover {
+  background: rgba(248, 113, 113, 0.28);
+}
+
+/* ---------- Layout: main content & cards ---------- */
+
+.site-main {
+  flex: 1 0 auto;
+  width: min(1120px, 100% - 32px);
+  margin: 24px auto 32px;
+  padding: 20px 20px 24px;
+}
+
+/* Core “cards” that sit on top of site-main:
+   thread cards, stats panels, generic post cards, etc. */
+.thread-card,
+.stats-panel__inner,
+.post,
+.form-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7);
+}
+
+/* Full-width footer pinned to bottom */
+.site-footer {
+  flex: 0 0 auto;
+  width: 100%;
+  border-top: 1px solid var(--border-subtle);
+  padding: 10px 24px 16px;
+}
+
+.site-footer__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* optional: center footer text on very small screens */
+@media (max-width: 700px) {
+  .site-main {
+    width: 100%;
+    margin: 16px auto 24px;
+    padding: 16px 14px 20px;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .site-footer__inner {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* ---------- Generic hidden attribute ---------- */
+[hidden] {
+  display: none !important;
+}
+
+/* ==========================
+   Shared Stats / Standings toggle
+   ========================== */
+
+.stats-toggle {
+  display: flex;
+  gap: 6px;
+}
+
+.stats-toggle__button {
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* Hover for both buttons */
+.stats-toggle__button:hover {
+  background: var(--accent-primary-soft);
+  color: var(--text-main);
+}
+
+/* Active tab-style button */
+.stats-toggle__button--active {
+  background: var(--accent-primary-soft);
+  color: var(--text-main);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
+}

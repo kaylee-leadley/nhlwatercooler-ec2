@@ -1,0 +1,277 @@
+/* assets/css/standings.css */
+
+/* ==========================
+   Layout: header + controls
+   ========================== */
+
+.page-standings__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 0 40px;
+}
+
+.page-standings__subtitle {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Mobile-first: stack heading above controls */
+.page-standings__top-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.page-standings__top-bar h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.page-standings__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .page-standings__top-bar {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .page-standings__controls {
+    justify-content: flex-end;
+  }
+}
+
+/* View dropdown (mirror stats filters) */
+.standings-filter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.standings-filter label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.standings-filter select {
+  padding: 3px 8px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface-alt);
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.standings-filter select:focus-visible {
+  outline: 1px solid var(--accent-primary);
+}
+
+/* ==========================
+   Standings sections
+   ========================== */
+
+.standings-root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.standings-conf__title {
+  font-size: 1.05rem;
+  margin: 0 0 8px;
+}
+
+.standings-group__table .stats-table th,
+.standings-group__table .stats-table td {
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* Wild card highlight row */
+.standings-table__row--wc td,
+.standings-row--wc-spot td {
+  font-weight: 600;
+}
+
+/* Team line bits used in standings.php render_rows() */
+.standings-teamline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.standings-teamabbr {
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+.standings-teamname {
+  opacity: 0.85;
+  font-weight: 700;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Rank badge (mobile + desktop okay) */
+.standings-rankbadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 26px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.standings-teamlogo {
+  height:40px;
+}
+/* ==========================
+   MOBILE: make rows into cards
+   (NCAA-style)
+   ========================== */
+
+@media (max-width: 700px) {
+  /* PTS: bold charcoal */
+.stats-table td[data-label="PTS"] strong {
+  color: #34d399 ;      /* charcoal */
+  background-color: rgba(0, 0, 0, 0.35);
+  padding:6px;
+  border-radius: 999px;
+  font-weight: 1000;
+}
+.standings-cell--team {
+  background: rgba(0, 0, 0, 0.35)!important;
+  border-radius: 6px;
+  font-weight: 1000;
+}
+.standings-teamabbr {
+  padding:4px;
+}
+.standings-teamname {
+  padding:6px;
+}
+  .stats-table td[data-label]::before {
+    content: attr(data-label) " ";
+    margin-right: 6px;          /* extra spacing safety */
+    font-weight: 800;
+    opacity: 0.9;
+  }
+  /* Hide table headers by column position (fallback) */
+  .stats-table th:nth-child(12), /* HOME */
+  .stats-table th:nth-child(13), /* AWAY */
+  .stats-table th:nth-child(16), /* DIFF */
+  .stats-table th:nth-child(17), /* L10 */
+  .stats-table th:nth-child(18)  /* STRK */ {
+    display: none;
+  }
+
+  /* Hide table cells by your semantic classes (preferred) */
+  .stats-table td.standings-cell--home,
+  .stats-table td.standings-cell--away,
+  .stats-table td.standings-cell--diff,
+  .stats-table td.standings-cell--l10,
+  .stats-table td.standings-cell--strk {
+    display: none;
+  }
+
+  /* Hide card-layout cells if you’re using data-label chips */
+  .stats-table td[data-label="HOME"],
+  .stats-table td[data-label="AWAY"],
+  .stats-table td[data-label="DIFF"],
+  .stats-table td[data-label="L10"],
+  .stats-table td[data-label="STRK"] {
+    display: none;
+  }
+  
+  /* hide table head */
+  .stats-table thead {
+    display: none;
+  }
+
+  /* each row becomes a card */
+  .stats-table tbody tr.standings-table__row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+
+    margin-bottom: 10px;
+    padding: 12px;
+
+    border: 3px solid var(--accent-secondary-soft);
+    border-radius: 6px;
+
+    /* let team theme win if you set --team-gradient on .team-xxx */
+    background: var(--team-gradient, var(--team-gradient));
+  }
+
+  /* remove classic borders/padding */
+  .stats-table tbody tr.standings-table__row td {
+    border-bottom: 0;
+    padding: 1px;
+    white-space: normal;
+  }
+
+  /* header row */
+  .standings-cell--rank { grid-column: 1 / 2; }
+  .standings-cell--team { grid-column: 2 / -1; }
+
+  /* hide “wide” columns on mobile (keep core chips) */
+  .standings-cell--rw,
+  .standings-cell--row,
+  .standings-cell--sow,
+  .standings-cell--sol,
+  .standings-cell--gf,
+  .standings-cell--ga,
+  .standings-cell--diff {
+    display: none;
+  }
+
+  /* chips */
+  .standings-cell--gp,
+  .standings-cell--w,
+  .standings-cell--l,
+  .standings-cell--otl,
+  .standings-cell--pts,
+  .standings-cell--home,
+  .standings-cell--away,
+  .standings-cell--l10,
+  .standings-cell--strk {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 8px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    text-align: center;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.05;
+  }
+
+  /* chip labels from data-label */
+  .stats-table tbody tr.standings-table__row td[data-label]::before {
+    content: attr(data-label);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.95;
+    font-weight: 700;
+  }
+}

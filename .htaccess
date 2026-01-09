@@ -1,0 +1,42 @@
+# ============================
+# Long-cache static assets
+# ============================
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Default for everything else (optional)
+  ExpiresDefault "access plus 1 week"
+
+  # Images – keep for a long time
+  ExpiresByType image/png       "access plus 1 year"
+  ExpiresByType image/jpeg      "access plus 1 year"
+  ExpiresByType image/jpg       "access plus 1 year"
+  ExpiresByType image/webp      "access plus 1 year"
+  ExpiresByType image/gif       "access plus 1 year"
+  ExpiresByType image/svg+xml   "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(png|jpe?g|gif|webp|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# ============================
+# Pretty URLs for threads
+# ============================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Pretty thread URLs:
+  #   /thread/YYYY-MM-DD/slug-123
+  #
+  # Example:
+  #   /thread/2025-12-10/det-cgy-gameday-thread-477
+  #
+  # Captures:
+  #   [^/]+             -> date segment (ignored by PHP)
+  #   ([A-Za-z0-9-]+)   -> slug (ignored by PHP)
+  #   ([0-9]+)          -> thread ID passed to PHP
+  RewriteRule ^thread/[^/]+/([A-Za-z0-9-]+)-([0-9]+)$ thread.php?id=$2 [L,QSA]
+</IfModule>

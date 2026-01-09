@@ -1,0 +1,559 @@
+/* assets/css/index.css */
+
+/* ==========================
+   Top bar / header
+   ========================== */
+
+.page-index .top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.page-index .top-bar h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+/* Right-side controls: Theme dropdown + search */
+.top-bar__controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent-primary-soft) 14%, transparent);
+}
+
+/* If you're using the Stats / Standings toggle */
+.top-bar__controls .stats-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================
+   Team filter (compact, themed)
+   ========================== */
+
+.team-filter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.team-filter label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.team-filter select {
+  padding: 8px;
+  font-size: 0.85rem;
+  border-radius: 10px;
+  width: 100%;
+  border: 2px solid var(--border-subtle);
+  background: var(--bg-input, var(--bg-surface-alt));
+  color: var(--text-main);
+  cursor: pointer;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  line-height: 1.2;
+  margin-top: 10px;
+}
+
+.team-filter select:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 1px;
+}
+
+/* ==========================
+   Thread search (themed input)
+   ========================== */
+
+.thread-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.thread-search label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.thread-search input[type="search"] {
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  border: 2px solid var(--border-subtle);
+  background: var(--bg-input, var(--bg-surface-alt));
+  color: var(--text-main);
+  min-width: 180px;
+  max-width: 260px;
+}
+
+.thread-search input[type="search"]::placeholder {
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+.thread-search input[type="search"]:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 1px;
+}
+
+/* ==========================
+   Thread grid + cards
+   ========================== */
+
+.thread-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* Thread card */
+.thread-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--shark-teal);
+  border-radius: 6px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition:
+    transform 0.12s ease-out,
+    box-shadow 0.12s ease-out,
+    border-color 0.12s ease-out,
+    background-color 0.12s ease-out;
+  min-height: 180px;
+}
+
+.thread-card,
+.thread-card:visited {
+  color: var(--text-main);
+}
+
+.thread-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+  border-color: var(--accent-primary-border, var(--accent-primary));
+  background-color: var(--page-card-bg-hover, var(--bg-surface-alt));
+  color: var(--text-main);
+}
+
+/* Image / header area when we have a custom article image */
+.thread-card__image {
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Live / In-progress games: dark soft green tint */
+.thread-card[data-live-status="live"] {
+  box-shadow:
+    0 0 0 1px rgba(52, 211, 153, 0.26),
+    0 12px 26px rgba(0, 0, 0, 0.35);
+  background-image:
+    linear-gradient(0deg, rgba(52, 211, 153, 0.10), rgba(52, 211, 153, 0.10));
+}
+
+/* Matchup “chip” gets a slightly stronger green */
+.thread-card[data-live-status="live"] .thread-card__matchup {
+  background: color-mix(in srgb, #34d399 20%, #0f1115 80%);
+  border: 1px solid #34d399;
+}
+
+/* Team logo strip (fallback when there is no custom header) */
+.thread-card__logo-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--team-gradient);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.thread-card__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thread-card__logo img {
+  height: 42px;
+  width: 42px;
+  object-fit: contain;
+}
+
+/* The "@" between logos */
+.thread-card__at {
+  font-weight: 700;
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+/* Placeholder if no image & no logos */
+.thread-card__placeholder {
+  height: 160px;
+  background: linear-gradient(135deg, var(--bg-surface-alt), var(--bg-surface));
+}
+
+/* Card body */
+.thread-card__body {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: var(--shark-teal);
+}
+
+.thread-card__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 2px;
+  color: var(--text-main);
+}
+
+.thread-card:hover .thread-card__title {
+  color: var(--text-main);
+}
+
+.thread-card__meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.thread-card__meta span {
+  opacity: 0.9;
+}
+
+/* Small matchup line (e.g. VGK @ SJS) */
+.thread-card__matchup {
+  display: inline-flex;
+  gap: 4px;
+  font-weight: 500;
+  background: #111318;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px;
+  border-radius: 9px;
+  align-items: center;
+}
+
+/* Optional date badge */
+.thread-card__date-badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: var(--accent-secondary-soft);
+  border: 1px solid var(--accent-secondary);
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* Posts / unread counts */
+.thread-card__counts {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.thread-card__counts--has-unread {
+  color: var(--accent-secondary);
+  font-weight: 600;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 40px 0;
+  opacity: 0.85;
+  color: var(--text-muted);
+}
+
+/* Infinite scroll sentinel + button */
+.thread-sentinel {
+  width: 100%;
+  height: 1px;
+}
+
+.thread-load-more {
+  display: block;
+  margin: 16px auto 0;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface-alt);
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.thread-load-more[hidden] {
+  display: none;
+}
+
+/* Score styling */
+.thread-card__score {
+  display: inline-block;
+  margin-top: 2px;
+  font-weight: 600;
+  color: var(--shark-orange);
+}
+
+.thread-card__score-num {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+/* LIVE pill styling (if you’re using it) */
+.thread-card__matchup--live .thread-card__pill {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #d6f8da;
+  color: #075f22;
+  border: 1px solid #b0e4b8;
+}
+
+/* ==========================
+   Outcome coloring (HYDRATE-GATED)
+   Only apply after JS sets body.live-scores--ready
+   ========================== */
+
+body.live-scores--ready .thread-card__abbr--win {
+  color: #4ade80;
+}
+
+body.live-scores--ready .thread-card__abbr--loss {
+  color: #f97373;
+}
+
+body.live-scores--ready .thread-card__abbr--tie,
+body.live-scores--ready .thread-card__score-num--tie {
+  color: #f59e0b;
+  opacity: 0.95;
+}
+
+body.live-scores--ready .thread-card__score-num--tie {
+  background: rgba(245, 158, 11, 0.10);
+  border-radius: 6px;
+  padding: 0 6px;
+}
+
+/* ==========================
+   Responsive tweaks
+   ========================== */
+
+@media (max-width: 768px) {
+  /* Let the title sit on its own line */
+  .page-index .top-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  /* Make the control block a full-width card */
+  .top-bar__controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--accent-primary-soft) 18%, transparent);
+  }
+
+  /* Stack label + field vertically, full width */
+  .thread-search,
+  .team-filter {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    font-size: 0.85rem;
+  }
+
+  .thread-search label,
+  .team-filter label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .thread-search input[type="search"],
+  .team-filter select {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .thread-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .thread-card__image,
+  .thread-card__placeholder {
+    height: min(56vw, 260px);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-index .top-bar h1 {
+    font-size: 1.2rem;
+  }
+
+  .top-bar__controls {
+    padding: 8px 10px;
+    border-radius: 10px;
+  }
+
+  .thread-card__image,
+  .thread-card__placeholder {
+    height: min(60vw, 240px);
+  }
+
+  .thread-search input[type="search"] {
+    min-width: 140px;
+    max-width: 100%;
+  }
+}
+
+/* ==========================
+   Desktop nav (unchanged-ish)
+   ========================== */
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Hide hamburger on desktop */
+.site-nav-toggle {
+  display: none;
+}
+
+/* ==========================
+   Mobile nav
+   ========================== */
+
+@media (max-width: 768px) {
+  .site-header__inner {
+    position: relative;
+    padding-right: 8px;
+  }
+
+  .site-nav-toggle {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: color-mix(in srgb, var(--accent-primary-soft) 18%, transparent);
+  }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    margin-top: 6px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--bg-surface-elevated, #020617);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      max-height 0.18s ease-out,
+      opacity 0.18s ease-out;
+  }
+
+  .site-nav.site-nav--open {
+    max-height: 400px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .site-nav__group,
+  .site-nav__item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+  }
+
+  .site-nav__link,
+  .site-nav__dropdown-link {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+
+  .site-nav__link--primary {
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .site-nav__item--dropdown {
+    position: static;
+  }
+
+  .site-nav__dropdown {
+    position: static;
+    box-shadow: none;
+    background: transparent;
+    padding-left: 0;
+    margin-top: 0;
+  }
+
+  .site-nav__link--dropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .site-nav__caret {
+    margin-left: 6px;
+    font-size: 0.7rem;
+    opacity: 0.8;
+  }
+}

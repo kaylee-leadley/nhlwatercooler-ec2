@@ -1,0 +1,1073 @@
+/* assets/css/color-scheme.css */
+
+/* ---------- Design tokens (global + Sharks default) ---------- */
+
+:root {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Arial, sans-serif;
+
+/* Surfaces */
+--bg-main:        rgba(160, 167, 178, 0.35); /* deep charcoal page base */
+--bg-surface:     #0E1116; /* cards / panels – graphite */
+--bg-surface-alt: #141820; /* subtle alt surface */
+
+/* Text */
+--text-main:  #F3F4F6;     /* neutral off-white */
+--text-muted: #B6BCC6;     /* cool gray, not blue */
+
+/* Borders */
+--border-subtle: rgba(160, 167, 178, 0.35); /* neutral gray */
+--border-strong: rgba(10, 12, 16, 0.92);    /* near-black */
+
+/* Semantic */
+--danger-bg:     rgba(248, 113, 113, 0.16);
+--danger-border: rgba(248, 113, 113, 0.75);
+--team-gradient: linear-gradient(
+  135deg,
+  color-mix(in srgb, var(--shark-teal) 26%, var(--shark-deep) 74%) 0%,
+  color-mix(in srgb, var(--shark-teal) 18%, var(--shark-deep) 82%) 35%,
+  color-mix(in srgb, var(--shark-orange) 22%, var(--shark-deep) 78%) 65%,
+  color-mix(in srgb, var(--shark-orange) 34%, var(--shark-deep) 66%) 100%
+);
+/* Layout-level backgrounds (shared by all teams) */
+--page-bg: linear-gradient(
+  90deg,
+  #070A10 0%,
+  #0B1018 22%,
+  color-mix(in srgb, #0E141E 88%, rgba(0, 190, 185, 0.18) 12%) 55%,
+  color-mix(in srgb, #121A26 82%, rgba(0, 190, 185, 0.22) 18%) 100%
+);
+
+  /* “Plate” under content (site-main).
+     Middle of the gradient is always tinted by the CURRENT TEAM’S
+     --accent-primary-soft, so each team gets its own subtle wash. */
+  --site-main-bg: radial-gradient(
+                    circle at 0% 0%,
+                    rgba(255, 255, 255, 0.05) 0%,
+                    transparent 45%
+                  ),
+                  linear-gradient(
+                    180deg,
+                    rgba(0, 0, 0, 0.96) 0%,
+                    var(--accent-primary-soft) 52%,
+                    rgba(0, 0, 0, 0.98) 100%
+                  );
+
+  /* Card surfaces (threads, stats panels, posts, etc.) */
+  --card-bg:     rgba(15, 23, 42, 0.96);
+  --card-border: rgba(15, 23, 42, 0.96);
+
+  /* Subtle chips / tabs / pills */
+  --chip-bg:     rgba(15, 23, 42, 0.9);
+  --chip-border: rgba(148, 163, 184, 0.5);
+  --hdr-teal: rgba(0, 190, 185, 0.18);     /* subtle teal glow */
+  --hdr-teal-2: rgba(0, 190, 185, 0.10);   /* softer */
+  --hdr-char-1: #151a22;
+  --hdr-char-2: #0f131a;
+
+  --header-grad: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--hdr-char-1) 88%, var(--hdr-teal) 12%) 0%,
+    color-mix(in srgb, var(--hdr-char-2) 92%, var(--hdr-teal-2) 8%) 55%,
+    #0b0f15 100%
+  );
+}
+/* NHL rows (standings + stats + rankings) get the same team gradient */
+.rankings-table__row[class*="team-"],
+.standings-table__row[class*="team-"],
+.stats-table__row[class*="team-"],
+/* and also cover your current markup that uses just <tr class="team-xxx"> */
+.stats-table tr,
+.player-card .adv-player-card,
+.thread-card__logo-strip {
+  --team-gradient: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--shark-teal) 26%, var(--shark-deep) 74%) 0%,
+    color-mix(in srgb, var(--shark-teal) 18%, var(--shark-deep) 82%) 35%,
+    color-mix(in srgb, var(--shark-orange) 22%, var(--shark-deep) 78%) 65%,
+    color-mix(in srgb, var(--shark-orange) 34%, var(--shark-deep) 66%) 100%
+  );
+}
+
+/* ========= Team theme overrides ========= */
+/* Each team only overrides color tokens. Layout tokens like
+   --page-bg, --site-main-bg, --card-bg stay shared so the app
+   feels cohesive, but the tint and accents change by team. */
+
+body.theme-team-all,
+body.theme-ncaa-all {
+  /* core neutrals */
+  --shark-deep:  #0b0f15;   /* near-black charcoal */
+  --shark-slate: #1a2230;   /* dark slate */
+  --shark-teal:  #0fbab2;   /* teal (used sparingly) */
+
+  /* keep orange/green from polluting league mode */
+  --shark-orange: #1a2230;
+  --shark-green:  #1a2230;
+
+  /* accents used by your header gradient */
+  --accent-primary:        #0b0f15;
+  --accent-primary-soft:   rgba(0, 190, 185, 0.06);
+  --accent-primary-border: rgba(160, 167, 178, 0.35);
+
+  --accent-secondary:      #121a26;              /* NOT light gray */
+  --accent-secondary-soft: rgba(0, 190, 185, 0.10);
+}
+
+/* Anaheim Ducks */
+body.theme-team-ana,
+tr.team-ana,
+.thread-card.team-ana {
+  --shark-teal:   #0a0a0a;
+  --shark-orange: rgba(244, 122, 56, 0.66);
+  --shark-green:  #f47a38;
+  --shark-deep:   #0a0a0a;
+  --shark-slate:  #ffffff;
+
+  --accent-primary:        #0a0a0a;
+  --accent-primary-soft:   rgba(244, 122, 56, 0.18);
+  --accent-primary-border: rgba(244, 122, 56, 0.9);
+  --border-subtle:#f47a38;
+  --accent-secondary:      #f47a38;
+  --accent-secondary-soft: rgba(244, 122, 56, 0.66);
+}
+
+/* Arizona Coyotes – warm brick, no purple */
+body.theme-team-ari,
+tr.team-ari,
+.thread-card.team-ari {
+  --shark-teal:   #8c2633;
+  --shark-orange: #e2d6b5;
+  --shark-green:  #5e8b3d;
+  --shark-deep:   #111111;
+  --shark-slate:  #c5b9a1;
+
+  --accent-primary:        #8c2633;
+  /* lightened version of team red */
+  --accent-primary-soft:   rgba(140, 38, 51, 0.9);
+  --accent-primary-border: rgba(140, 38, 51, 0.9);
+
+  --accent-secondary:      #e2d6b5;
+  --accent-secondary-soft: rgba(226, 214, 181, 0.22);
+}
+
+/* Boston Bruins */
+body.theme-team-bos,
+tr.team-bos,
+.thread-card.team-bos {
+  --shark-teal:   #000000;
+  --shark-orange: rgba(255, 184, 28, 0.66);
+  --shark-green:  #ffb81c;
+  --shark-deep:   #000000;
+  --shark-slate:  #c2a86b;
+
+  --accent-primary:        #111111;
+  --accent-primary-soft:   rgba(255, 184, 28, 0.24);
+  --accent-primary-border: rgba(255, 184, 28, 0.9);
+
+  --accent-secondary:      #ffb81c;
+  --accent-secondary-soft: rgba(255, 184, 28, 0.66);
+}
+
+/* Buffalo Sabres */
+body.theme-team-buf,
+tr.team-buf,
+.thread-card.team-buf {
+  --shark-teal:   rgba(0, 38, 84, 0.66);
+  --shark-orange: rgba(252, 181, 20, 0.66);
+  --shark-green:  #fcb514;
+  --shark-deep:   #001632;
+  --shark-slate:  #9fa8b4;
+  --border-subtle: #ffffff;
+  --accent-primary:        #002654;
+  --accent-primary-soft:   rgba(0, 38, 84, 0.66);
+  --accent-primary-border: rgba(0, 38, 84, 0.66);
+
+  --accent-secondary:      #fcb514;
+  --accent-secondary-soft: rgba(252, 181, 20, 0.66);
+}
+
+/* Carolina Hurricanes – bright red wash, not wine */
+body.theme-team-car,
+tr.team-car,
+.thread-card.team-car {
+  --shark-teal:   #111111;
+  --shark-orange: rgba(219, 76, 76, 0.66);
+  --shark-green:  #a8a8a8;
+  --shark-deep:   #111111;
+  --shark-slate:  #bbbbbb;
+  --border-subtle: #a8a8a8;
+  --accent-primary:        #cc0000;
+  /* lightened #cc0000 */
+  --accent-primary-soft:   rgba(204, 0, 0, 0.9);
+  --accent-primary-border: rgba(204, 0, 0, 0.9);
+  --border-subtle: #a8a8a8;
+  --accent-secondary:      #111111;
+  --accent-secondary-soft: #111111;
+}
+
+/* Columbus Blue Jackets */
+body.theme-team-cbj,
+tr.team-cbj,
+.thread-card.team-cbj {
+  --shark-teal:   rgba(0, 38, 84, 0.66);
+  --shark-orange: rgba(206, 17, 38, 0.66);
+  --shark-green:  #ce1126;
+  --shark-deep:   #00152f;
+  --shark-slate:  #9fa8b4;
+  --border-subtle: #ffffff;
+  --accent-primary:        #002654;
+  --accent-primary-soft:   rgba(0, 38, 84, 0.26);
+  --accent-primary-border: rgba(0, 38, 84, 0.9);
+
+  --accent-secondary:      #ce1126;
+  --accent-secondary-soft: rgba(206, 17, 38, 0.66);
+}
+
+/* Calgary Flames – hot red, no maroon */
+body.theme-team-cgy,
+tr.team-cgy,
+.thread-card.team-cgy {
+  --shark-teal:   #000000;
+  --shark-orange: rgba(200, 16, 46, 0.66);
+  --shark-green:  #f1be48;
+  --shark-deep:   #7a000b;
+  --shark-slate:  #f7ddb1;
+
+  --accent-primary:        #c8102e;
+  /* lightened #c8102e */
+  --accent-primary-soft:   rgba(200, 16, 46, 0.9);
+  --accent-primary-border: rgba(200, 16, 46, 0.9);
+  --border-subtle: #f1be48;
+  --accent-secondary:      #f1be48;
+  --accent-secondary-soft: #000000;
+}
+
+/* Chicago Blackhawks – warmer scarlet */
+body.theme-team-chi,
+tr.team-chi,
+.thread-card.team-chi {
+  --shark-teal:   #111111;
+  --shark-orange: rgba(207, 10, 44, 0.9);
+  --shark-green:  #00a94f;
+  --shark-deep:   #111111;
+  --shark-slate:  #f2c94c;
+
+  --accent-primary:        #cf0a2c;
+  /* lightened #cf0a2c */
+  --accent-primary-soft:   rgba(207, 10, 44, 0.9);
+  --accent-primary-border: #f2c94c;
+  --border-subtle: #f2c94c;
+  --accent-secondary:      rgba(0, 169, 79, .66);
+  --accent-secondary-soft: rgba(0, 169, 79, .66);
+}
+
+/* Colorado Avalanche – the one team that *stays* maroon */
+body.theme-team-col,
+tr.team-col,
+.thread-card.team-col {
+  --shark-teal:   #6f263d;
+  --shark-orange: #236192;
+  --shark-green:  #a4a9ad;
+  --shark-deep:   #1b1b1b;
+  --shark-slate:  #c0c5ce;
+  --border-subtle: #ffffff;
+  --accent-primary:        #6f263d;
+  --accent-primary-soft:   rgba(111, 38, 61, 0.66); /* maroon is intentional */
+  --accent-primary-border: rgba(111, 38, 61, 0.9);
+
+  --accent-secondary:      #236192;
+  --accent-secondary-soft: rgba(35, 97, 146, 0.66);
+}
+
+/* Dallas Stars */
+body.theme-team-dal,
+tr.team-dal,
+.thread-card.team-dal {
+  --shark-teal:   #111111;
+  --shark-orange: rgba(0, 104, 71, 0.9);
+  --shark-green:  #006847;
+  --shark-deep:   #111111;
+  --shark-slate:  #c0c0c0;
+  --border-subtle: #ffffff;
+  --accent-primary:        #006847;
+  --accent-primary-soft:   rgba(0, 104, 71, 0.24);
+  --accent-primary-border: rgba(0, 104, 71, 0.9);
+  --border-subtle: rgba(192, 192, 192, 1);
+  --accent-secondary:      rgba(0, 104, 71, 0.9);
+  --accent-secondary-soft: rgba(192, 192, 192, 0.66);
+}
+
+/* Detroit Red Wings – classic bright red */
+body.theme-team-det,
+tr.team-det,
+.thread-card.team-det {
+  --shark-teal:   rgba(255, 255, 255, 0.2);
+  --shark-orange: rgba(206, 17, 38, 0.9);
+  --shark-green:  #080707;
+  --shark-deep:   #7a0010;
+  --shark-slate:  #f4cccc;
+  /* --border-subtle: #FFFFFF; */
+  --accent-primary:        #ce1126;
+  /* lightened #ce1126 */
+  --accent-primary-soft:   rgba(206, 17, 38, 0.9);
+  --accent-primary-border: rgba(206, 17, 38, 0.9);
+--border-subtle: #ffffff;
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255, 255, 255, 0.2);
+}
+
+/* Edmonton Oilers */
+body.theme-team-edm,
+tr.team-edm,
+.thread-card.team-edm {
+  --shark-teal:   rgba(0, 32, 91, 0.66);
+  --shark-orange: rgba(255, 76, 0, 0.68);
+  --shark-green:  #004b8d;
+  --shark-deep:   #001332;
+  --shark-slate:  #9fa8b4;
+  --border-subtle:#ffffff;
+  --accent-primary:        #00205b;
+  --accent-primary-soft:   rgba(0, 32, 91, 0.26);
+  --accent-primary-border: rgba(0, 32, 91, 0.9);
+
+  --accent-secondary:      #ff4c00;
+  --accent-secondary-soft: rgba(255, 76, 0, 0.68);
+}
+
+/* Florida Panthers – red wash based on their red */
+body.theme-team-flo,
+tr.team-flo,
+.thread-card.team-flo {
+  --shark-teal:   rgba(185, 151, 91, 0.66);
+  --shark-orange: rgba(200, 16, 46, 0.66);
+  --shark-green:  #c8102e;
+  --shark-deep:   #041021;
+  --shark-slate:  #cbb89c;
+  --border-subtle: #c8102e;
+  --accent-primary:        #c8102e;
+  /* lightened #c8102e */
+  --accent-primary-soft:   #c8102e;
+  --accent-primary-border: #c8102e;
+
+  --accent-secondary:      #b9975b;
+  --accent-secondary-soft: rgba(185, 151, 91, 0.66);
+}
+
+/* Los Angeles Kings */
+body.theme-team-lak,
+tr.team-lak,
+.thread-card.team-lak {
+  --shark-teal:   rgba(17, 17, 17, 0.66);
+  --shark-orange: rgba(162, 170, 173, 0.66);
+  --shark-green:  #ffffff;
+  --shark-deep:   #000000;
+  --shark-slate:  #a2aaad;
+
+  --accent-primary:        #111111;
+  --accent-primary-soft:   rgba(162, 170, 173, 0.66);
+  --accent-primary-border: rgba(17, 17, 17, 0.66);
+
+  --accent-secondary:      #a2aaad;
+  --accent-secondary-soft: rgba(162, 170, 173, 0.66);
+}
+
+/* Minnesota Wild */
+body.theme-team-min,
+tr.team-min,
+.thread-card.team-min {
+  --shark-teal:   rgba(21, 71, 52, 0.66);
+  --shark-orange: rgba(166, 25, 46, 0.66);
+  --shark-green:  #eaaa00;
+  --shark-deep:   #0b261c;
+  --shark-slate:  #c7d4c3;
+  --border-subtle: #eaaa00;
+  --accent-primary:        #154734;
+  --accent-primary-soft:   rgba(21, 71, 52, 0.66);
+  --accent-primary-border: rgba(21, 71, 52, 0.66);
+
+  --accent-secondary:      #a6192e;
+  --accent-secondary-soft: rgba(166, 25, 46, 0.66);
+}
+
+/* Montréal Canadiens – softer Habs red */
+body.theme-team-mtl,
+tr.team-mtl,
+.thread-card.team-mtl {
+  --shark-teal:   rgba(0, 62, 126, 0.66);
+  --shark-orange: rgba(166, 25, 46, 0.66);
+  --shark-green:  #ffffff;
+  --shark-deep:   #001633;
+  --shark-slate:  #c9ced9;
+  --border-subtle: #ffffff;
+  --accent-primary:        #a6192e;
+  --accent-primary-soft:   rgba(166, 25, 46, 0.66);
+  --accent-primary-border: rgba(166, 25, 46, 0.66);
+
+  --accent-secondary:      #003e7e;
+  --accent-secondary-soft: rgba(0, 62, 126, 0.66);
+}
+
+/* New Jersey Devils – bright Devils red */
+body.theme-team-njd,
+tr.team-njd,
+.thread-card.team-njd {
+  --shark-teal:   rgba(0, 99, 65, 0.66);
+  --shark-orange: rgba(224, 58, 62, 0.66);
+  --shark-green:  #ffffff;
+  --shark-deep:   #111111;
+  --shark-slate:  #c9d0c9;
+  --border-subtle: #ffffff;
+  --accent-primary:        #e03a3e;
+  /* lightened #e03a3e */
+  --accent-primary-soft:   rgba(224, 58, 62, 0.66);
+  --accent-primary-border: rgba(224, 58, 62, 0.66);
+
+  --accent-secondary:      #006341;
+  --accent-secondary-soft: rgba(0, 99, 65, 0.66);
+}
+
+/* Nashville Predators */
+body.theme-team-nsh,
+tr.team-nsh,
+.thread-card.team-nsh {
+  --shark-teal:   #041e42;
+  --shark-orange: rgba(255, 184, 28, 0.66);
+  --shark-green:  #ffb81c;
+  --shark-deep:   #041021;
+  --shark-slate:  #f5dea6;
+  --border-subtle: #ffffff;
+  --accent-primary:        #041e42;
+  --accent-primary-soft:   rgba(255, 184, 28, 0.66);
+  --accent-primary-border: rgba(255, 184, 28, 0.66);
+
+  --accent-secondary:      #ffb81c;
+  --accent-secondary-soft: rgba(255, 184, 28, 0.66);
+}
+
+/* New York Islanders */
+body.theme-team-nyi,
+tr.team-nyi,
+.thread-card.team-nyi {
+  --shark-teal:   rgba(0, 83, 155, 0.66);
+  --shark-orange: rgba(244, 125, 48, 0.66);
+  --shark-green:  #ffffff;
+  --shark-deep:   #002752;
+  --shark-slate:  #c7d3e8;
+  --border-subtle: #ffffff;
+  --accent-primary:        #00539b;
+  --accent-primary-soft:   rgba(0, 83, 155, 0.66);
+  --accent-primary-border: rgba(0, 83, 155, 0.66);
+
+  --accent-secondary:      #f47d30;
+  --accent-secondary-soft: rgba(244, 125, 48, 0.66);
+}
+
+/* New York Rangers */
+body.theme-team-nyr,
+tr.team-nyr,
+.thread-card.team-nyr {
+  --shark-teal:   rgba(0, 56, 168, 0.66);;
+  --shark-orange: rgba(206, 17, 38, 0.86);
+  --shark-green:  #ffffff;
+  --shark-deep:   #001b52;
+  --shark-slate:  #c8d0e8;
+  --border-subtle: #ffffff;
+  --accent-primary:        #0038a8;
+  --accent-primary-soft:   rgba(0, 56, 168, 0.66);
+  --accent-primary-border: rgba(0, 56, 168, 0.66);
+
+  --accent-secondary:      #ce1126;
+  --accent-secondary-soft: rgba(206, 17, 38, 0.86);
+}
+
+/* Ottawa Senators – warm red + gold */
+body.theme-team-ott,
+tr.team-ott,
+.thread-card.team-ott {
+  --shark-teal:   #000000;
+  --shark-orange: rgba(227, 24, 55, 0.66);
+  --shark-green:  #c69214;
+  --shark-deep:   #000000;
+  --shark-slate:  #c7b8a2;
+  --border-subtle: #c69214;
+  --accent-primary:        #000000;
+  /* lightened #e31837 */
+  --accent-primary-soft:   rgba(227, 24, 55, 0.9);
+  --accent-primary-border: rgba(227, 24, 55, 0.9);
+
+  --accent-secondary:      rgba(227, 24, 55, 0.9);
+  --accent-secondary-soft: rgba(227, 24, 55, 0.66);
+}
+
+/* Philadelphia Flyers – bright orange wash */
+body.theme-team-phi,
+tr.team-phi,
+.thread-card.team-phi {
+  --shark-teal:   #000000;
+  --shark-orange: rgba(247, 73, 2, 0.66);
+  --shark-green:  #f74902;
+  --shark-deep:   #000000;
+  --shark-slate:  #f4c6a3;
+  --border-subtle: #ffffff;
+  --accent-primary:        #000000;
+  /* lightened #f74902 */
+  --accent-primary-soft:   rgba(247, 73, 2, 0.9);
+  --accent-primary-border: rgba(247, 73, 2, 0.9);
+
+  --accent-secondary:      rgba(247, 73, 2, 1);;
+  --accent-secondary-soft: rgba(249, 127, 77, 0.66);
+}
+
+/* Pittsburgh Penguins */
+body.theme-team-pit,
+ tr.team-pit,
+.thread-card.team-pit{
+  --shark-teal:   #000000;
+  --shark-orange: rgba(255, 184, 28, 0.66);
+  --shark-green:  #ffb81c;
+  --shark-deep:   #000000;
+  --shark-slate:  #f4deaa;
+  --border-subtle: #f4deaa;
+  --accent-primary:        #000000;
+  --accent-primary-soft:   rgba(255, 184, 28, 0.9);
+  --accent-primary-border: rgba(255, 184, 28, 0.9);
+
+  --accent-secondary:      #000000;
+  --accent-secondary-soft: rgba(255, 184, 28, 0.66);
+}
+
+/* San Jose Sharks */
+body.theme-team-sjs,
+tr.team-sjs,
+.thread-card.team-sjs {
+  --shark-teal:   rgba(0, 123, 138, 0.66);
+  --shark-orange:   rgba(245, 155, 42, .86);
+  --shark-green:  #008f4f;
+  --shark-deep:   #003f51;
+  --shark-slate:  #62757f;
+  --border-subtle:#62757f;
+  --accent-primary:        #007b8a;
+  --accent-primary-soft:   rgba(0, 123, 138, 0.9);
+  --accent-primary-border: #f59b2a;
+
+  --accent-secondary:      rgba(0, 123, 138, 0.66);
+  --accent-secondary-soft: rgba(0, 123, 138, 0.66);
+}
+
+/* St. Louis Blues */
+body.theme-team-stl,
+tr.team-stl,
+.thread-card.team-stl {
+  --shark-teal:   rgba(0, 47, 135, 0.66);
+  --shark-orange: rgba(255, 184, 28, 0.86);
+  --shark-green:  #002f87;
+  --shark-deep:   #001744;
+  --shark-slate:  #c0c7e0;
+  --border-subtle: #ffffff;
+  --accent-primary:        #002f87;
+  --accent-primary-soft:   rgba(0, 47, 135, 0.66);
+  --accent-primary-border: rgba(0, 47, 135, 0.66);
+
+  --accent-secondary:      #ffb81c;
+  --accent-secondary-soft: rgba(255, 184, 28, 0.66);
+}
+
+/* Tampa Bay Lightning */
+body.theme-team-tbl,
+tr.team-tbl,
+.thread-card.team-tbl {
+  --shark-teal:   rgba(143, 188, 230, 0.46);
+  --shark-orange: rgba(0, 40, 104, 0.66);
+  --shark-green:  #ffffff;
+  --shark-deep:   #001643;
+  --shark-slate:  #c2d4f2;
+
+  --accent-primary:        #002868;
+  --accent-primary-soft:   rgba(0, 40, 104, 0.66);
+  --accent-primary-border: rgba(0, 40, 104, 0.66);
+
+  --accent-secondary:      #FFFFFF;
+  --accent-secondary-soft: rgba(143, 188, 230, 0.46);
+
+}
+
+/* Toronto Maple Leafs */
+body.theme-team-tor,
+tr.team-tor,
+.thread-card.team-tor {
+  --shark-teal:   rgba(0, 62, 126, 0.24);
+  --shark-orange: rgba(0, 62, 126, 0.66);
+  --shark-green:  #003e7e;
+  --shark-deep:   #001a33;
+  --shark-slate:  #c4d0e8;
+
+  --accent-primary:        #003e7e;
+  --accent-primary-soft:   rgba(0, 62, 126, 0.24);
+  --accent-primary-border: rgba(0, 62, 126, 0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(0, 62, 126, 0.66);
+}
+
+/* Vancouver Canucks */
+body.theme-team-van,
+tr.team-van,
+.thread-card.team-van {
+  --shark-teal:   rgba(0, 32, 91, 0.66);
+  --shark-orange: rgba(0, 132, 61, 0.66);
+  --shark-green:  #00843d;
+  --shark-deep:   #001033;
+  --shark-slate:  #c0d0df;
+
+  --accent-primary:        #00205b;
+  --accent-primary-soft:   rgba(0, 32, 91, 0.24);
+  --accent-primary-border: rgba(0, 32, 91, 0.9);
+
+  --accent-secondary:      #00843d;
+  --accent-secondary-soft: rgba(0, 132, 61, 0.66);
+}
+
+/* Vegas Golden Knights */
+body.theme-team-vgk,
+tr.team-vgk,
+.thread-card.team-vgk {
+  --shark-teal:   #333f48;
+  --shark-orange: rgba(180, 151, 90, 0.9);
+  --shark-green:  #b4975a;
+  --shark-deep:   #333f48;
+  --shark-slate:  #c6c0aa;
+
+  --accent-primary:        #b4975a;
+  --accent-primary-soft:   rgba(180, 151, 90, 0.24);
+  --accent-primary-border: rgba(180, 151, 90, 0.9);
+
+  --accent-secondary:      #333f48;
+  --accent-secondary-soft: rgba(180, 151, 90, 0.66);
+}
+
+/* Washington Capitals – Caps red wash */
+body.theme-team-wsh,
+tr.team-wsh,
+.thread-card.team-wsh {
+  --shark-teal:   #041021;
+  --shark-orange: rgba(216, 87, 108, 0.66);
+  --shark-green:  #c8102e;
+  --shark-deep:   #041021;
+  --shark-slate:  #c7c8d8;
+
+  --accent-primary:        #041e42;
+  /* lightened Caps red (same red as CGY/FLA) */
+  --accent-primary-soft:   rgba(200, 16, 46, 0.9);
+  --accent-primary-border: rgba(200, 16, 46, 0.9);
+
+  --accent-secondary:      #041e42;
+  --accent-secondary-soft: rgba(216, 87, 108, 0.66);
+}
+
+/* Winnipeg Jets */
+body.theme-team-wpj,
+tr.team-wpj,
+.thread-card.team-wpj {
+  --shark-teal:   #041e42;
+  --shark-orange: #ac162c;
+  --shark-green:  #7b9fc9;
+  --shark-deep:   #021125;
+  --shark-slate:  #c2c9d7;
+
+  --accent-primary:        #041e42;
+  --accent-primary-soft:   rgba(4, 30, 66, 0.26);
+  --accent-primary-border: rgba(4, 30, 66, 0.9);
+
+  --accent-secondary:      #ac162c;
+  --accent-secondary-soft: rgba(172, 22, 44, 0.28);
+}
+
+/* Utah Hockey Club / Utah Mammoth */
+body.theme-team-uta,
+tr.team-uta,
+.thread-card.team-uta {
+  --shark-teal:   #7ab2e0;
+  --shark-orange: #ffffff;
+  --shark-green:  #7ab2e0;
+  --shark-deep:   #010101;
+  --shark-slate:  #cfd6e0;
+
+  --accent-primary:        #7ab2e0;
+  --accent-primary-soft:   rgba(122, 178, 224, 0.24);
+  --accent-primary-border: rgba(122, 178, 224, 0.9);
+
+  --accent-secondary:      #7ab2e0;
+  --accent-secondary-soft: rgba(255, 255, 255, 0.2);
+}
+
+/* Seattle Kraken */
+body.theme-team-sea,
+tr.team-sea,
+.thread-card.team-sea {
+  --shark-teal:   #68a2b9;
+  --shark-orange: #e9072b;
+  --shark-green:  #99d9d9;
+  --shark-deep:   #001628;
+  --shark-slate:  #355464;
+  --border-subtle:#e9072b;
+  --accent-primary:        #001628;
+  --accent-primary-soft:   rgba(153, 217, 217, 0.66);
+  --accent-primary-border: rgba(0, 22, 40, 0.9);
+
+  --accent-secondary:      #99d9d9;
+  --accent-secondary-soft: rgba(153, 217, 217, 0.3);
+}
+/* =========================================================
+   Team-specific page theming (index.php)
+   Uses:
+   --page-bg
+   --page-header-hr
+   --page-card-bg
+   --page-card-bg-hover
+   --page-card-header-bg
+   ========================================================= */
+
+/* Anaheim Ducks */
+/* Anaheim Ducks index theming – only orange, charcoal, white */
+body.theme-team-ana,
+tr.team-ana,
+.thread-card.team-ana {
+  /* line under header */
+  --page-header-hr: rgba(244, 122, 56, 0.8);          /* orange */
+
+  /* flat card bg (charcoal) */
+  --page-card-bg:       rgba(10, 10, 10, 0.98);       /* charcoal */
+  --page-card-bg-hover: rgba(20, 20, 20, 0.98);       /* slightly lighter charcoal */
+
+  /* logo-strip / header band on card – soft orange wash */
+  --page-card-header-bg: rgba(244, 122, 56, 0.16);    /* translucent orange */
+  background:#000000;
+  /* If you want the little date badge to feel white/orange too: */
+  /* (optional, only if you’re overriding these elsewhere)
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255, 255, 255, 0.18);
+  */
+}
+
+
+/* Arizona Coyotes */
+body.theme-team-ari,
+tr.team-ari,
+.thread-card.team-ari {
+  --page-bg: radial-gradient(circle at top, #3a1017 0%, #1a0a0d 50%, #050204 100%);
+  --page-header-hr: rgba(226, 214, 181, 0.85);
+  --page-card-bg: rgba(19, 10, 12, 0.98);
+  --page-card-bg-hover: rgba(28, 14, 18, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #8c2633 0%, #5e8b3d 45%, #e2d6b5 100%);
+}
+
+/* Boston Bruins */
+body.theme-team-bos,
+tr.team-bos,
+.thread-card.team-bos {
+  --page-bg: radial-gradient(circle at top, #1d1400 0%, #0b0800 45%, #000000 100%);
+  --page-header-hr: rgba(255, 184, 28, 0.9);
+  --page-card-bg: #000000;
+  --page-card-bg-hover: rgba(18, 14, 0, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #ffb81c 0%, #111111 50%, #c2a86b 100%);
+}
+
+/* Buffalo Sabres */
+body.theme-team-buf,
+tr.team-buf,
+.thread-card.team-buf {
+  --page-bg: radial-gradient(circle at top, #00336f 0%, #001632 55%, #000815 100%);
+  --page-header-hr: rgba(252, 181, 20, 0.9);
+  --page-card-bg: rgba(0, 22, 50, 0.98);
+  --page-card-bg-hover: rgba(0, 30, 70, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #002654 0%, #001632 60%, #fcb514 100%);
+}
+
+/* Carolina Hurricanes */
+body.theme-team-car,
+tr.team-car,
+.thread-card.team-car {
+  --page-bg: radial-gradient(circle at top, rgba(204, 0, 0, 0.9) 0%, #230000 45%, #050000 100%);
+  --page-header-hr: rgba(204, 0, 0, 0.9);
+  --page-card-bg: rgba(204, 0, 0, 0.9);
+  --page-card-bg-hover: rgba(204, 0, 0, 0.9);
+  --page-card-header-bg: linear-gradient(135deg, #cc0000 0%, #111111 50%, #bbbbbb 100%);
+}
+
+/* Columbus Blue Jackets */
+body.theme-team-cbj,
+tr.team-cbj,
+.thread-card.team-cbj {
+  --page-bg: radial-gradient(circle at top, #002654 0%, #00152f 55%, #000816 100%);
+  --page-header-hr: rgba(206, 17, 38, 0.9);
+  --page-card-bg: rgba(0, 21, 47, 0.98);
+  --page-card-bg-hover: rgba(0, 29, 63, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #002654 0%, #00152f 45%, #ce1126 100%);
+}
+
+/* Calgary Flames */
+body.theme-team-cgy,
+tr.team-cgy,
+.thread-card.team-cgy {
+  --page-bg: radial-gradient(circle at top, #c8102e 0%, #330007 50%, #080001 100%);
+  --page-header-hr: rgba(241, 190, 72, 0.9);
+  --page-card-bg: #c8102e;
+  --page-card-bg-hover: #c8102e;
+  --page-card-header-bg: linear-gradient(135deg, #c8102e 0%, #7a000b 50%, #f1be48 100%);
+}
+
+/* Chicago Blackhawks */
+body.theme-team-chi,
+tr.team-chi,
+.thread-card.team-chi {
+  --page-bg: radial-gradient(circle at top, rgba(207, 10, 44, 0.9) 0%, #210006 50%, #050001 100%);
+  --page-header-hr: rgba(207, 10, 44, 0.9);
+  --page-card-bg: rgba(207, 10, 44, 0.9);
+  --page-card-bg-hover: rgba(207, 10, 44, 0.9);
+  --page-card-header-bg: linear-gradient(135deg, #cf0a2c 0%, #111111 45%, #f2c94c 100%);
+}
+
+/* Colorado Avalanche */
+body.theme-team-col,
+tr.team-col,
+.thread-card.team-col {
+  --page-bg: radial-gradient(circle at top, #34101d 0%, #19060d 50%, #050104 100%);
+  --page-header-hr: rgba(111, 38, 61, 0.9);
+  --page-card-bg: rgba(23, 8, 14, 0.98);
+  --page-card-bg-hover: rgba(32, 11, 19, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #6f263d 0%, #236192 50%, #a4a9ad 100%);
+}
+
+/* Dallas Stars */
+body.theme-team-dal,
+tr.team-dal,
+.thread-card.team-dal {
+  --page-bg: radial-gradient(circle at top, #003522 0%, #001810 50%, #020606 100%);
+  --page-header-hr: rgba(0, 104, 71, 0.9);
+  --page-card-bg: rgba(7, 24, 18, 0.98);
+  --page-card-bg-hover: rgba(10, 31, 23, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #006847 0%, #111111 50%, #c0c0c0 100%);
+}
+
+/* Detroit Red Wings */
+body.theme-team-det,
+ tr.team-det,
+.thread-card.team-det{
+  --page-bg: radial-gradient(circle at top, rgba(206, 17, 38, 0.9) 0%, #330008 50%, #080001 100%);
+  --page-header-hr: rgba(206, 17, 38, 0.9);
+  --page-card-bg: rgba(206, 17, 38, 0.9);
+  --page-card-bg-hover: rgba(206, 17, 38, 0.9);
+  --page-card-header-bg: linear-gradient(135deg, #ce1126 0%, #7a0010 50%, #ffffff 100%);
+}
+
+/* Edmonton Oilers */
+body.theme-team-edm {
+  --page-bg: radial-gradient(circle at top, #00205b 0%, #001332 55%, #000715 100%);
+  --page-header-hr: rgba(255, 76, 0, 0.85);
+  --page-card-bg: rgba(0, 19, 50, 0.98);
+  --page-card-bg-hover: rgba(0, 27, 70, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #ff4c00 0%, #00205b 50%, #004b8d 100%);
+}
+
+/* Florida Panthers */
+body.theme-team-flo {
+  --page-bg: radial-gradient(circle at top, #c8102e 0%, #041021 55%, #020813 100%);
+  --page-header-hr: rgba(185, 151, 91, 0.9);
+  --page-card-bg: #c8102e;
+  --page-card-bg-hover: #c8102e;
+  --page-card-header-bg: linear-gradient(135deg, #c8102e 0%, #041e42 50%, #b9975b 100%);
+}
+
+/* Los Angeles Kings */
+body.theme-team-lak {
+  --page-bg: radial-gradient(circle at top, #1a1a1a 0%, #080808 50%, #000000 100%);
+  --page-header-hr: rgba(162, 170, 173, 0.9);
+  --page-card-bg: rgba(10, 10, 10, 0.98);
+  --page-card-bg-hover: rgba(18, 18, 18, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #111111 0%, #000000 50%, #a2aaad 100%);
+}
+
+/* Minnesota Wild */
+body.theme-team-min {
+  --page-bg: radial-gradient(circle at top, #154734 0%, #0b261c 50%, #020b07 100%);
+  --page-header-hr: rgba(234, 170, 0, 0.9);
+  --page-card-bg: rgba(9, 32, 24, 0.98);
+  --page-card-bg-hover: rgba(12, 40, 30, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #154734 0%, #a6192e 50%, #eaaa00 100%);
+}
+
+/* Montréal Canadiens */
+body.theme-team-mtl {
+  --page-bg: radial-gradient(circle at top, rgba(166, 25, 46, 0.9) 0%, #1c0207 50%, #050104 100%);
+  --page-header-hr: rgba(166, 25, 46, 0.9);
+  --page-card-bg: rgba(166, 25, 46, 0.9);
+  --page-card-bg-hover: rgba(166, 25, 46, 0.9);
+  --page-card-header-bg: linear-gradient(135deg, #a6192e 0%, #003e7e 50%, #ffffff 100%);
+}
+
+/* New Jersey Devils */
+body.theme-team-njd {
+  --page-bg: radial-gradient(circle at top, rgba(224, 58, 62, 0.9) 0%, #200204 50%, #050001 100%);
+  --page-header-hr: rgba(224, 58, 62, 0.9);
+  --page-card-bg: rgba(224, 58, 62, 0.9);
+  --page-card-bg-hover: rgba(224, 58, 62, 0.9);
+  --page-card-header-bg: linear-gradient(135deg, #e03a3e 0%, #006341 50%, #ffffff 100%);
+}
+
+/* Nashville Predators */
+body.theme-team-nsh {
+  --page-bg: radial-gradient(circle at top, #ffb81c 0%, #5b3d00 45%, #041021 100%);
+  --page-header-hr: rgba(255, 184, 28, 0.9);
+  --page-card-bg: #041e42;
+  --page-card-bg-hover: #041e42;
+  --page-card-header-bg: linear-gradient(135deg, #ffb81c 0%, #041e42 50%, #f5dea6 100%);
+}
+
+/* New York Islanders */
+body.theme-team-nyi {
+  --page-bg: radial-gradient(circle at top, #00539b 0%, #002752 50%, #000b16 100%);
+  --page-header-hr: rgba(244, 125, 48, 0.9);
+  --page-card-bg: rgba(0, 28, 66, 0.98);
+  --page-card-bg-hover: rgba(0, 37, 86, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #00539b 0%, #002752 50%, #f47d30 100%);
+}
+
+/* New York Rangers */
+body.theme-team-nyr {
+  --page-bg: radial-gradient(circle at top, #0038a8 0%, #001b52 50%, #000715 100%);
+  --page-header-hr: rgba(206, 17, 38, 0.9);
+  --page-card-bg: rgba(0, 25, 79, 0.98);
+  --page-card-bg-hover: rgba(0, 33, 98, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #0038a8 0%, #001b52 50%, #ce1126 100%);
+}
+
+/* Ottawa Senators */
+body.theme-team-ott {
+  --page-bg: radial-gradient(circle at top, rgba(227, 24, 55, 0.9) 0%, #200003 50%, #050001 100%);
+  --page-header-hr: rgba(227, 24, 55, 0.9);
+  --page-card-bg: #000000;
+  --page-card-bg-hover: rgba(227, 24, 55, 0.9);
+  --page-card-header-bg: linear-gradient(135deg, #e31837 0%, #000000 50%, #c69214 100%);
+}
+
+/* Philadelphia Flyers */
+body.theme-team-phi {
+  --page-bg: radial-gradient(circle at top, rgba(247, 73, 2, 0.9) 0%, #200c00 50%, #050200 100%);
+  --page-header-hr: rgba(247, 73, 2, 0.9);
+  --page-card-bg: #000000;
+  --page-card-bg-hover: rgba(247, 73, 2, 0.9);
+  --page-card-header-bg: linear-gradient(135deg, #f74902 0%, #000000 50%, #f4c6a3 100%);
+}
+
+/* Pittsburgh Penguins */
+body.theme-team-pit {
+  --page-bg: radial-gradient(circle at top, #ffb81c 0%, #5b3d00 45%, #000000 100%);
+  --page-header-hr: rgba(255, 184, 28, 0.9);
+  --page-card-bg: #000000
+  --page-card-bg-hover: rgba(32, 24, 7, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #ffb81c 0%, #000000 50%, #f4deaa 100%);
+}
+
+/* San Jose Sharks */
+body.theme-team-sjs {
+  --page-bg: radial-gradient(circle at top, #00475a 0%, #00141c 55%, #000a10 100%);
+  --page-header-hr: rgba(245, 155, 42, 0.8);
+  --page-card-bg: rgba(3, 35, 48, 0.98);
+  --page-card-bg-hover: rgba(4, 27, 38, 0.98);
+  --page-card-header-bg: radial-gradient(circle at 10% 0%, #003f51, #032330);
+}
+
+/* St. Louis Blues */
+body.theme-team-stl {
+  --page-bg: radial-gradient(circle at top, #002f87 0%, #001744 50%, #000715 100%);
+  --page-header-hr: rgba(255, 184, 28, 0.9);
+  --page-card-bg: rgba(0, 25, 78, 0.98);
+  --page-card-bg-hover: rgba(0, 34, 100, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #002f87 0%, #001744 50%, #ffb81c 100%);
+}
+
+/* Tampa Bay Lightning */
+body.theme-team-tbl {
+  --page-bg: radial-gradient(circle at top, #002868 0%, #001643 50%, #000715 100%);
+  --page-header-hr: #FFFFFF;
+  --page-card-bg: rgba(0, 24, 72, 0.98);
+  --page-card-bg-hover: rgba(0, 32, 96, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #002868 0%, #001643 50%, #8fbce6 100%);
+}
+
+/* Toronto Maple Leafs */
+body.theme-team-tor {
+  --page-bg: radial-gradient(circle at top, #003e7e 0%, #001a33 50%, #000711 100%);
+  --page-header-hr: rgba(255, 255, 255, 0.6);
+  --page-card-bg: rgba(0, 27, 66, 0.98);
+  --page-card-bg-hover: rgba(0, 36, 88, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #003e7e 0%, #001a33 50%, #ffffff 100%);
+}
+
+/* Vancouver Canucks */
+body.theme-team-van {
+  --page-bg: radial-gradient(circle at top, #00205b 0%, #001033 50%, #000614 100%);
+  --page-header-hr: rgba(0, 132, 61, 0.9);
+  --page-card-bg: rgba(0, 21, 69, 0.98);
+  --page-card-bg-hover: rgba(0, 29, 92, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #00205b 0%, #001033 45%, #00843d 100%);
+}
+
+/* Vegas Golden Knights */
+body.theme-team-vgk {
+  --page-bg: radial-gradient(circle at top, #333f48 0%, #1b2024 50%, #050607 100%);
+  --page-header-hr: rgba(180, 151, 90, 0.9);
+  --page-card-bg: rgba(19, 23, 27, 0.98);
+  --page-card-bg-hover: rgba(27, 32, 36, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #b4975a 0%, #333f48 60%, #c6c0aa 100%);
+}
+
+/* Washington Capitals */
+body.theme-team-wsh {
+  --page-bg: radial-gradient(circle at top, rgba(200, 16, 46, 0.9) 0%, #2a0209 50%, #060104 100%);
+  --page-header-hr: rgba(200, 16, 46, 0.9);
+  --page-card-bg: rgba(200, 16, 46, 0.9);
+  --page-card-bg-hover: rgba(200, 16, 46, 0.9);
+  --page-card-header-bg: linear-gradient(135deg, #c8102e 0%, #041e42 50%, #c7c8d8 100%);
+}
+
+/* Winnipeg Jets */
+body.theme-team-wpj {
+  --page-bg: radial-gradient(circle at top, #041e42 0%, #021125 50%, #00060f 100%);
+  --page-header-hr: rgba(172, 22, 44, 0.9);
+  --page-card-bg: rgba(5, 20, 48, 0.98);
+  --page-card-bg-hover: rgba(8, 28, 65, 0.98);
+  --page-card-header-bg: linear-gradient(135deg, #041e42 0%, #021125 50%, #ac162c 100%);
+}
+/* Utah Hockey Club index theming */
+body.theme-team-uta {
+  /* thin line under header (if you’re using --page-header-hr) */
+  --page-header-hr: rgba(122, 178, 224, 0.9); /* Mountain Blue */
+
+  /* flat card backgrounds */
+  --page-card-bg:        rgba(3, 3, 3, 0.96);     /* almost rock black */
+  --page-card-bg-hover:  rgba(15, 15, 15, 0.96);  /* slightly lifted */
+  --page-card-header-bg: rgba(122, 178, 224, 0.22); /* blue-tinted strip */
+}
+
+/* Seattle Kraken index theming */
+body.theme-team-sea {
+  --page-header-hr: rgba(153, 217, 217, 0.9); /* Ice Blue */
+
+  --page-card-bg:        rgba(0, 22, 40, 0.96);   /* deep sea blue */
+  --page-card-bg-hover:  rgba(10, 35, 56, 0.96);  /* a hair lighter */
+  --page-card-header-bg: rgba(153, 217, 217, 0.20); /* soft ice band */
+}
+/* “All teams” index theming – neutral cards */
+body.theme-team-all {
+  /* thin line under header / hr */
+  --page-header-hr: rgba(208, 215, 226, 0.45);  /* light neutral */
+
+  /* flat neutral card backgrounds (no gradients) */
+  --page-card-bg:       rgba(32, 38, 51, 0.96);  /* mid charcoal slate */
+  --page-card-bg-hover: rgba(38, 45, 60, 0.96);  /* a bit lighter on hover */
+
+  /* logo-strip/header band on card – subtle slate wash */
+  --page-card-header-bg: rgba(139, 150, 168, 0.20);
+}

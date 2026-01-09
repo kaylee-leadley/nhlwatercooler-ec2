@@ -1,0 +1,394 @@
+/* ============================================================
+   Advanced Stats Wrapper + Grid
+============================================================ */
+.thread-adv-stats{
+  margin:22px 0;
+  padding:14px 14px 8px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:14px;
+  background:rgba(0,0,0,.12);
+}
+
+.thread-adv-stats__header h2{
+  margin:0 0 10px;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+
+.thread-adv-stats__grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:18px;
+  margin-top:20px;
+}
+
+/* ============================================================
+   Cards
+============================================================ */
+.adv-chart,
+.adv-block--quadrant{
+  background:var(--page-bg);
+  border:1px solid var(--accent-secondary);
+  border-radius:6px;
+}
+
+.adv-team__hdr{
+  margin:20px 0;
+  font-size:16px;
+  font-weight:900;
+  opacity:.95;
+}
+
+.adv-chart{
+  margin:10px 0;
+  padding:20px;
+  max-width:100%;
+  border:2px solid var(--accent-primary);
+  overflow:hidden; /* default; quadrant overrides below */
+  border-radius:6px;
+}
+
+/* ============================================================
+   SVGs (global)
+============================================================ */
+.advsvg,
+.xgq__svg{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* Optional guardrail: keep huge SVGs from filling absurdly tall viewports */
+.adv-chart svg{
+  width:100%;
+  height:auto;
+  max-height:120vh;
+  display:block;
+}
+
+/* ============================================================
+   GAR segment colors + WAR bar + tooltip base
+============================================================ */
+.seg--ev{  fill:rgba(59,130,246,.85); }   /* blue  */
+.seg--pp{  fill:rgba(236,72,153,.80); }   /* pink  */
+.seg--sh{  fill:rgba(20,184,166,.78); }   /* teal  */
+.seg--pen{ fill:rgba(250,204,21,.82); }   /* yellow */
+
+.warbar{
+  fill:var(--accent-secondary);
+  stroke:rgba(255,255,255,.18);
+  stroke-width:1;
+}
+
+.adv-tooltip{ max-width:340px; }
+
+/* ============================================================
+   Quadrant (xG quadrant) behavior
+============================================================ */
+/* Default desktop: keep it tidy */
+.adv-block--quadrant .js-xg-quadrant{
+  overflow:hidden;
+}
+
+/* If quadrant is inside a bordered card, don't clip labels/tooltips */
+.adv-block--quadrant,
+.adv-block--quadrant.adv-chart,
+.adv-block--quadrant .adv-chart{
+  overflow:visible !important;
+}
+
+/* Quadrant-specific SVG should NOT be max-height constrained */
+.adv-block--quadrant svg{
+  max-height:none;
+}
+
+/* ============================================================
+   xG Quadrant block shell (optional wrapper you had)
+============================================================ */
+.xgq{
+  width:100%;
+  max-width:980px;
+  border-radius:6px;
+  overflow:hidden;
+  /* border:1px solid var(--accent-secondary); */
+  background:var(--page-bg);
+}
+.xgq svg{ width:100%; height:100%; display:block; }
+
+/* ============================================================
+   Chips (CF%, xGF%, TOI, /60 rates)
+============================================================ */
+.adv-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:8px 0 0;
+}
+
+.adv-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,.35);
+  background:rgba(15,23,42,.35);
+  color:rgba(229,231,235,.92);
+  font:800 12px/1 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  letter-spacing:.01em;
+  white-space:nowrap;
+  user-select:none;
+}
+
+/* Grading states */
+.adv-chip.is-neutral{
+  border-color:rgba(148,163,184,.35);
+  background:rgba(15,23,42,.35);
+  color:rgba(229,231,235,.92);
+  opacity:.92;
+}
+
+.adv-chip.is-good{
+  border-color:rgba(34,197,94,.55);
+  background:rgba(34,197,94,.12);
+  color:rgba(236,253,245,.96);
+  box-shadow:0 0 0 1px rgba(34,197,94,.10) inset;
+}
+
+.adv-chip.is-bad{
+  border-color:rgba(245,158,11,.60);
+  background:rgba(245,158,11,.12);
+  color:rgba(255,251,235,.96);
+  box-shadow:0 0 0 1px rgba(245,158,11,.10) inset;
+}
+
+.adv-chip.is-ugly{
+  border-color:rgba(239,68,68,.65);
+  background:rgba(239,68,68,.12);
+  color:rgba(254,242,242,.96);
+  box-shadow:0 0 0 1px rgba(239,68,68,.10) inset;
+}
+
+/* Optional “status dot” */
+.adv-chip.is-good::before,
+.adv-chip.is-bad::before,
+.adv-chip.is-ugly::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  display:inline-block;
+  margin-right:2px;
+}
+.adv-chip.is-good::before{ background:rgba(34,197,94,.95); }
+.adv-chip.is-bad::before{  background:rgba(245,158,11,.95); }
+.adv-chip.is-ugly::before{ background:rgba(239,68,68,.95); }
+
+/* ============================================================
+   Chart wrapper (title + legend OUTSIDE SVG)
+============================================================ */
+.adv-fig{
+  margin:18px 0;
+  --adv-title-size:28px;
+  --adv-legend-size:16px;
+}
+
+.adv-fig__title{
+  margin:0 0 14px;
+  text-align:center;
+  color:rgba(229,231,235,.92);
+  font:32px;
+  font-weight: bolder;
+  letter-spacing:.2px;
+}
+
+.adv-fig__legend{
+  margin:10px 0 18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px 22px;
+  align-items:center;
+  justify-content:center;
+  color:rgba(229,231,235,.72);
+  font:18px;
+  opacity:.95;
+}
+
+.adv-leg{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  white-space:nowrap;
+}
+
+.adv-leg__swatch{
+  width:calc(var(--adv-legend-size) * .9);
+  height:calc(var(--adv-legend-size) * .7);
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,.14);
+  display:inline-block;
+}
+
+/* legend swatch colors (match your SVG palette) */
+.adv-leg__swatch--xg{  background:rgba(59,130,246,.85); }
+.adv-leg__swatch--gar{ background:rgba(236,72,153,.80); }
+.adv-leg__swatch--cf{  background:rgba(250,204,21,.82); }
+
+.adv-leg__swatch--ev{  background:rgba(59,130,246,.85); }
+.adv-leg__swatch--pp{  background:rgba(236,72,153,.80); }
+.adv-leg__swatch--sh{  background:rgba(20,184,166,.78); }
+.adv-leg__swatch--pen{ background:rgba(250,204,21,.82); }
+
+.adv-fig__plot{
+  overflow:hidden; /* default; override per chart if needed */
+}
+
+.adv-fig__plot svg{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* If you want impact/gar/war to be physically taller (optional) */
+.adv-chart svg.advsvg--impact{ min-height:900px; }
+.adv-chart svg.advsvg--gar{    min-height:700px; }
+.adv-chart svg.advsvg--war{    min-height:600px; }
+
+/* ============================================================
+   Impact rewrite classes (from your new JS)
+============================================================ */
+.impact-svg{ width:100%; height:auto; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; }
+.impact-grid{ stroke:rgba(255,255,255,.10); stroke-width:1; }
+.impact-tick{ fill:rgba(255,255,255,.70); font-size:12px; font-weight:600; }
+.impact-bar{ rx:6; ry:6; }
+.impact-pos{ fill:rgba(34,197,94,.60); }
+.impact-neg{ fill:rgba(239,68,68,.60); }
+.impact-name{ fill:rgba(229,231,235,.95); font-size:16px; font-weight:800; }
+
+.impact-tooltip{
+  position:fixed;
+  background:rgba(0,0,0,.85);
+  color:#fff;
+  padding:8px 10px;
+  border-radius:6px;
+  font-size:13px;
+  font-weight:600;
+  z-index:99999;
+  display:none;
+  pointer-events:none;
+  box-shadow:0 3px 10px rgba(0,0,0,.5);
+}
+
+/* ============================================================
+   Mobile tweaks
+============================================================ */
+@media (max-width:640px){
+  .site-main{ padding:0 5px; }
+
+  .thread-adv-stats{
+    padding:0;
+    border:unset;
+    background:unset;
+  }
+
+  .adv-chart{ padding:0; }
+
+  /* Quadrant: scroll horizontally + bottom breathing room */
+  .adv-block--quadrant .js-xg-quadrant{
+    overflow-x:auto !important;
+    overflow-y:visible !important;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-x pan-y;
+    padding:10px 0 28px 10px;
+  }
+
+  /* Keep quadrant SVG “desktop sized” so it stays readable */
+  .adv-block--quadrant .xgq__svg{
+    width:1100px;
+    max-width:none;
+    height:auto;
+    display:block;
+  }
+
+  /* Quadrant: simplify labels */
+  .adv-block--quadrant .xgq__svg .tick{ display:none; }
+  .adv-block--quadrant .xgq__svg .lbl{ font-size:18px !important; }
+  .adv-block--quadrant .xgq__svg .sub{ font-size:12px !important; }
+  .adv-block--quadrant .xgq__svg .g{ opacity:.45; }
+
+  /* Chips */
+  .adv-chips{ gap:7px; }
+  .adv-chip{ padding:7px 11px; font-size:13px; }
+
+  /* Figure typography on mobile */
+  .adv-fig{
+    --adv-title-size:18px;
+    --adv-legend-size:12px;
+  }
+}
+.adv-fig--impact .adv-impact{
+  --impact-overall-h: 16px;
+  --impact-split-h: 10px;
+  --impact-row-gap: 12px;
+  --impact-gap: 0px;
+
+  --impact-name-size: 14px;
+  --impact-tick-size: 14px;
+  --impact-name-pad: 12px;
+}
+/* Impact footer */
+.adv-impact-footer{
+  margin-top:14px;
+  padding:12px 14px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:12px;
+  background:rgba(0,0,0,.10);
+}
+.adv-impact-footer__hdr{
+  margin:0 0 8px;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+.adv-impact-footer__list{
+  margin:8px 0 0;
+  padding-left:18px;
+}
+.adv-impact-footer__list li{
+  margin:6px 0;
+  line-height:1.35;
+}
+.adv-impact-footer__muted{
+  margin:10px 0 0;
+  opacity:.78;
+  font-size:12px;
+  line-height:1.35;
+}
+.adv-impact-footer code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  font-size:12px;
+  opacity:.92;
+}
+.adv-fig__title, .adv-fig__legend { position: relative; z-index: 5; }
+.adv-impact__grid { z-index: 0; }
+/* Keep bars below names */
+.adv-impact__bar {
+  position: absolute;
+  z-index: 1;
+}
+
+/* Make player names render above the bars */
+.adv-impact__barlabel,
+.adv-impact__name {
+  position: relative;
+  z-index: 2;
+}
+.adv-mobile-sort__select{
+  background: rgba(0,0,0,0.18) !important;
+  color: inherit !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  border-radius: 999px;
+  padding: 6px 10px;
+}
+

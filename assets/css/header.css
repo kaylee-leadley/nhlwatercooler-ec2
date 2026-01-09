@@ -1,0 +1,362 @@
+/* assets/css/header.css */
+
+/* ==========================
+   Header shell
+   ========================== */
+
+/* Sticky, team-colored header */
+.site-header {
+  width: 100%;
+  padding: 10px 24px;
+  border-bottom: 0;
+ /* keep both if you have them */
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.95) 0%,
+    color-mix(in srgb, var(--accent-primary) 92%, rgba(0,190,185,0.10) 8%) 40%,
+    color-mix(in srgb, var(--accent-secondary) 88%, rgba(0,190,185,0.18) 12%) 100%
+  );
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex: 0 0 auto;
+}
+
+/* Gradient “border” at the bottom of the header */
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-secondary),
+    var(--accent-primary)
+  );
+  pointer-events: none;
+}
+
+.site-header__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Brand / logo */
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+.site-header__logo {
+  height: 64px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
+}
+
+.site-header__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  white-space: nowrap;
+  color: var(--text-main);
+}
+
+/* ==========================
+   Primary nav layout
+   ========================== */
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.9rem;
+}
+
+/* Nav groups: primary links vs user/actions */
+.site-nav__group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-nav__group--primary {
+  margin-right: 8px;
+}
+
+/* Username pill */
+.site-nav__user-pill {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* Base nav link pill */
+.site-nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  color: var(--text-main);
+  opacity: 0.9;
+  text-decoration: none;
+  transition:
+    background-color 0.18s ease-out,
+    border-color 0.18s ease-out,
+    color 0.18s ease-out,
+    transform 0.12s ease-out;
+}
+
+/* Default (Threads, Schedule, Account) */
+.site-nav__link:hover {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: var(--border-subtle);
+  transform: translateY(-1px);
+  color: var(--text-main);
+}
+
+/* Primary action (New Thread / Register) */
+.site-nav__link--primary {
+  background: var(--accent-primary-soft);
+  font-weight: 600;
+}
+
+.site-nav__link--primary:hover {
+  background: var(--accent-primary);
+}
+
+/* Ghost action (Logout / Login) */
+.site-nav__link--ghost:hover {
+  background: var(--accent-primary-soft);
+}
+
+/* ==========================
+   Hamburger toggle
+   ========================== */
+
+.site-nav-toggle {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 32px;
+}
+
+.site-nav-toggle__bar {
+  display: block;
+  width: 32px;
+  height: 4px;
+  margin: 6px 0;
+  background: var(--text-main);
+  border-radius: 1px;
+}
+
+/* ==========================
+   Dropdown base styles
+   (used for Threads + Data)
+   ========================== */
+
+.site-nav__item {
+  position: relative;
+}
+
+.site-nav__item--dropdown {
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-nav__link--dropdown {
+  padding-right: 20px; /* room for caret */
+}
+
+.site-nav__caret {
+  margin-left: 6px;
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+/* Dropdown menu (desktop + base) */
+.site-nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  min-width: 160px;
+  padding: 6px 0;
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  background:
+    radial-gradient(circle at 0% 0%,
+      rgba(255, 255, 255, 0.03),
+      transparent 55%
+    ),
+    color-mix(in srgb,
+      var(--accent-primary-soft) 24%,
+      #020617
+    );
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.75);
+  display: none;
+  z-index: 30;
+}
+
+.site-nav__dropdown-link {
+  display: block;
+  padding: 6px 14px;
+  font-size: 0.86rem;
+  color: var(--text-main);
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+.site-nav__dropdown-link:hover {
+  background: var(--accent-primary-soft);
+  color: var(--text-main);
+  opacity: 1;
+}
+
+/* Active item in dropdowns (Threads NHL/NCAA) */
+.site-nav__dropdown-link--active {
+  font-weight: 600;
+  opacity: 1;
+}
+
+/* Show dropdown only when JS toggles .site-nav__item--open */
+.site-nav__item--open > .site-nav__dropdown {
+  display: block;
+}
+
+/* ==========================
+   Mobile header / nav
+   ========================== */
+
+@media (max-width: 700px) {
+  .site-header {
+    padding: 8px 12px;
+  }
+
+  .site-header__inner {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .site-header__brand {
+    flex: 0 0 auto;
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  /* Smaller logo on mobile */
+  .site-header__logo {
+    height: 52px;
+  }
+
+  .site-header__title {
+    display: none;
+  }
+
+  .site-nav-toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+  /* ==========================
+     MOBILE NAV LAYOUT
+     Two vertical columns
+     - Left: user/account
+     - Right: Threads/Data/New Thread
+     ========================== */
+
+  .site-nav {
+    flex-basis: 100%;
+    width: 100%;
+    margin-top: 6px;
+    display: none; /* hidden until burger toggles it */
+    align-items: flex-start;
+    gap: 16px;
+    font-size: 0.85rem;
+  }
+
+  .site-nav.site-nav--open {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Each group becomes a vertical column */
+  .site-nav__group {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  /* Ensure left column = user/account, right column = Threads/Data/New Thread */
+  .site-nav__group--user {
+    order: 1;
+  }
+
+  .site-nav__group--primary {
+    order: 2;
+  }
+
+  .site-nav__link,
+  .site-nav__user-pill {
+    padding: 4px 10px;
+  }
+
+  /* Mobile dropdown behaves like an accordion inside the right column */
+  .site-nav__item--dropdown {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-nav__link--dropdown {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .site-nav__dropdown {
+    position: static;
+    margin-top: 2px;
+    min-width: 0;
+    padding: 2px 0 0 12px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    display: none; /* hidden by default on mobile */
+  }
+
+  .site-nav__item--open > .site-nav__dropdown {
+    display: block;
+  }
+
+  .site-nav__dropdown-link {
+    padding: 2px 0;
+    font-size: 0.82rem;
+  }
+}

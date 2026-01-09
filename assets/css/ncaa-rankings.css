@@ -1,0 +1,315 @@
+/* assets/css/ncaa-rankings.css */
+
+/* ==========================
+   NCAA Rankings page layout
+   ========================== */
+
+.page-rankings__section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.page-rankings__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.page-rankings__subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 4px 0 0;
+}
+
+.page-rankings__updated {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* Controls row */
+.page-rankings__controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.page-rankings__controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.page-rankings__controls select {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  padding: 6px 28px 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: var(--accent-primary);
+  color: var(--text-main);
+}
+
+/* Mobile header tweaks */
+@media (max-width: 700px) {
+  .page-rankings__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .page-rankings__controls {
+    align-self: flex-start;
+  }
+}
+
+/* ==========================
+   Card + table (desktop/tablet)
+   ========================== */
+
+.rankings-card {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--accent-secondary);
+  background: var(--team-gradient);
+}
+
+/* Scroll container */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.table-scroll,
+.rankings-card {
+  min-width: 0;
+}
+
+/* Desktop table */
+.rankings-table {
+  width: 100%;
+  font-size: 0.9rem;
+  background: var(--accent-primary);
+  border-collapse: collapse;
+}
+
+.rankings-table thead {
+  /* background: var(--accent-secondary-soft); */
+}
+
+.rankings-table th,
+.rankings-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+}
+
+.rankings-table th {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Zebra + hover (match stats palette) */
+.rankings-table tbody tr {
+  background: var(--team-gradient);
+}
+
+.rankings-table tbody tr:nth-child(2n) {
+  /* background: var(--accent-secondary-soft); */
+}
+
+.rankings-table tbody tr:hover {
+  filter: brightness(1.08);
+}
+
+/* Header cell content */
+.rankings-table__headerline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.rankings-table__rankbadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-main);
+  flex: 0 0 auto;
+}
+
+.rankings-table__logo {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rankings-table__logo img {
+  max-width: unset;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+}
+
+.rankings-table__team-name {
+  font-weight: 800;
+  min-width: 0;
+}
+
+.rankings-table__team-votes {
+  color: var(--text-muted);
+  font-size: 0.85em;
+}
+
+/* Trend styling */
+.rankings-table__trend {
+  margin-left: 6px;
+  font-size: 0.85em;
+  opacity: 0.9;
+}
+
+.rankings-table__trend--up {
+  color: #61d98a;
+}
+
+.rankings-table__trend--down {
+  color: #ff6b6b;
+}
+
+.rankings-table__trend--same {
+  color: var(--text-muted);
+}
+
+/* ==========================
+   MOBILE: card layout
+   - top row: rank badge + logo + team (+ votes)
+   - bottom row: chips (Record / Points / Prev)
+   ========================== */
+
+@media (max-width: 700px) {
+  .rankings-card {
+    background: unset;
+    border: 0;
+  }
+
+  .table-scroll {
+    overflow: visible;
+  }
+
+  .rankings-table {
+    width: 100%;
+    min-width: 100%;
+    border-collapse: separate;
+    background: unset;
+  }
+
+  .rankings-table thead {
+    display: none;
+  }
+
+  /* Each TR becomes a 3-col grid:
+     Row 1: header spans all
+     Row 2: 3 chips
+  */
+  .rankings-table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+
+    margin-bottom: 10px;
+    padding: 12px;
+
+    border: 1px solid var(--accent-secondary);
+    border-radius: 6px;
+    background: var(--team-gradient);
+  }
+
+  .rankings-table tbody tr:nth-child(2n) {
+    /* background: var(--accent-secondary-soft); */
+    border-color: var(--accent-secondary);
+  }
+
+  /* Remove default borders/padding for card mode */
+  .rankings-table td {
+    border-bottom: 0;
+    padding: 0;
+    white-space: normal;
+  }
+
+  /* Header cell spans full width */
+  .rankings-table__cell-header {
+    grid-column: 1 / -1;
+  }
+
+  .rankings-table__headerline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .rankings-table__logo {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+  }
+
+  .rankings-table__logo img {
+    height: 24px;
+  }
+
+  .rankings-table__team-name {
+    font-weight: 800;
+    font-size: 1.02rem;
+    line-height: 1.15;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  /* Chips */
+  .rankings-table__cell-record,
+  .rankings-table__cell-points,
+  .rankings-table__cell-prev {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 8px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    text-align: center;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.05;
+  }
+
+  /* Labels for chips (uses data-label if present) */
+  .rankings-table td[data-label]::before {
+    content: attr(data-label);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.95;
+    font-weight: 700;
+  }
+}

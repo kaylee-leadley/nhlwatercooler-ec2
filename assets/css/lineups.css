@@ -1,0 +1,953 @@
+/* ==========================
+   Lineups section
+   ========================== */
+.goalie-status--confirmed td{
+  background: color-mix(in srgb, #34d399 20%, #0f1115 80%)/* ==========================================================
+   Lineups section (FULL CSS)
+   Includes: goalie status row coloring + orange fallback + score red→green
+   ========================================================== */
+
+/* ---------- Section spacing ---------- */
+.thread-lineups-section {
+  margin: 24px 0 28px;
+}
+
+/* ---------- Outer shell ---------- */
+.thread-lineups {
+  margin: 0;
+  padding: 14px 18px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle, rgba(148, 163, 184, 0.4));
+  background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.04), transparent 55%),
+              linear-gradient(135deg, rgba(0, 0, 0, 0.96) 0%,
+              var(--accent-secondary-soft) 40%, rgba(0, 0, 0, 0.96) 100%);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+
+.thread-lineups__header {
+  margin-bottom: 10px;
+}
+
+.thread-lineups__header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-main, #e5e7eb);
+}
+
+.thread-lineups__subtitle {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted, rgba(229, 231, 235, 0.75));
+}
+
+/* ---------- Each lineup type block ---------- */
+.thread-lineups__row {
+  margin-top: 10px;
+}
+
+.thread-lineups__row + .thread-lineups__row {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.thread-lineups__row-header {
+  margin-bottom: 6px;
+}
+
+.thread-lineups__type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--chip-border, rgba(148, 163, 184, 0.5));
+  background-color: var(--chip-bg, rgba(15, 23, 42, 0.9));
+  color: var(--text-muted, rgba(229, 231, 235, 0.75));
+}
+
+.thread-lineups__type-badge--expected {
+  border-color: rgba(96, 165, 250, 0.85);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.35);
+}
+
+.thread-lineups__type-badge--actual {
+  border-color: rgba(52, 211, 153, 0.9);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+}
+
+/* ---------- Team layout ---------- */
+.thread-lineups__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+}
+
+.thread-lineups__team {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.thread-lineups__team-name {
+  margin: 0 0 4px;
+  font-size: 0.98rem;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--text-main, #e5e7eb);
+}
+
+.thread-lineups__team-pill {
+  font-size: 0.7rem;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle, rgba(148, 163, 184, 0.35));
+  color: var(--text-muted, rgba(229, 231, 235, 0.75));
+  text-transform: uppercase;
+  opacity: 0.95;
+}
+
+/* ---------- Subsections ---------- */
+.thread-lineups__section {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.thread-lineups__section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.thread-lineups__section-title {
+  margin: 0 0 3px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted, rgba(229, 231, 235, 0.75));
+}
+
+/* ---------- Tables ---------- */
+.lineup-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  color: var(--text-main, #e5e7eb);
+}
+
+.lineup-table thead th {
+  padding: 4px 6px;
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.45);
+  background-color: rgba(15, 23, 42, 0.75);
+}
+
+.lineup-table tbody th,
+.lineup-table tbody td {
+  padding: 3px 6px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+}
+
+.lineup-table tbody th {
+  font-weight: 600;
+  width: 2.4rem;
+  color: var(--text-muted, rgba(229, 231, 235, 0.75));
+}
+
+.lineup-table tbody td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Zebra striping */
+.lineup-table tbody tr:nth-child(odd) {
+  background-color: rgba(11, 18, 32, 0.85);
+}
+.lineup-table tbody tr:nth-child(even) {
+  background-color: rgba(17, 24, 39, 0.78);
+}
+
+/* Hover */
+.lineup-table tbody tr:hover {
+  background-color: var(--accent-secondary-soft, rgba(148, 163, 184, 0.18));
+}
+
+/* ---------- Extras list ---------- */
+.thread-lineups__extras-list {
+  margin: 4px 0 0;
+  padding-left: 16px;
+  font-size: 0.8rem;
+  color: var(--text-main, #e5e7eb);
+}
+.thread-lineups__extras-list li + li {
+  margin-top: 2px;
+}
+.thread-lineups__slot {
+  font-weight: 600;
+  margin-right: 4px;
+  color: var(--text-muted, rgba(229, 231, 235, 0.75));
+}
+
+/* ==========================================================
+   Goalies: row coloring by status (apply to whole <tr>)
+   ========================================================== */
+
+/* CONFIRMED (green) */
+tr.goalie-status--confirmed td{
+  background: color-mix(in srgb, #34d399 20%, #0f1115 80%);
+}
+
+/* EXPECTED (blue-ish) */
+tr.goalie-status--expected td{
+  background: color-mix(in srgb, #60a5fa 18%, #0f1115 82%);
+}
+
+/* Any OTHER status (orange) */
+tr.goalie-row[class*="goalie-status--"]:not(.goalie-status--confirmed):not(.goalie-status--expected) td{
+  background: color-mix(in srgb, #f97316 20%, #0f1115 80%);
+}
+
+/* Keep the left header cell consistent if you want it tinted too */
+tr.goalie-status--confirmed th,
+tr.goalie-status--expected th,
+tr.goalie-row[class*="goalie-status--"]:not(.goalie-status--confirmed):not(.goalie-status--expected) th{
+  background: inherit;
+}
+
+/* ==========================================================
+   Goalie meta display: [Status: X • Start Score: Y]
+   ========================================================== */
+
+.goalie-meta {
+  opacity: 0.95;
+  margin-left: 6px;
+  font-size: 0.78rem;
+}
+
+.goalie-meta-label {
+  opacity: 0.75;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.goalie-dot {
+  opacity: 0.6;
+  padding: 0 2px;
+}
+
+/* ==========================================================
+   Score color: red (bad) -> green (good)
+   Expects: .goalie-score { --goalie-score: 0..100; }
+   ========================================================== */
+
+.goalie-score {
+  font-weight: 900;
+  /* 0..100 -> 0..120deg hue (red->green) */
+  color: hsl(calc(var(--goalie-score, 50) * 1.2deg), 85%, 55%);
+  text-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+/* Optional: add a subtle pill behind the score */
+.goalie-score-wrap .goalie-score {
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+/* ==========================================================
+   Responsive tweaks
+   ========================================================== */
+
+@media (max-width: 800px) {
+  .thread-lineups {
+    padding: 12px 12px 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .thread-lineups__grid {
+    gap: 14px 0;
+  }
+}
+
+}
+.thread-lineups-section {
+  margin: 20px 0 26px;
+}
+
+.thread-lineups {
+  border-radius: 12px;
+  padding: 14px 18px 18px;
+  border: 1px solid var(--border-subtle, #2b3440);
+  background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.04), 
+  transparent 55%), linear-gradient(135deg, rgba(0, 0, 0, 0.96) 0%,
+   var(--accent-secondary-soft) 40%, rgba(0, 0, 0, 0.96) 100%);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+}
+
+.thread-lineups__header {
+  margin-bottom: 10px;
+}
+
+.thread-lineups__header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.thread-lineups__subtitle {
+  margin: 2px 0 0;
+  font-size: 0.82rem;
+  opacity: 0.8;
+}
+
+/* Each lineup type (expected / final) row */
+
+.thread-lineups__row + .thread-lineups__row {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.thread-lineups__row-header {
+  margin-bottom: 6px;
+}
+
+.thread-lineups__type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.85);
+  text-transform: uppercase;
+}
+
+.thread-lineups__type-badge--expected {
+  border-color: rgba(96, 165, 250, 0.85);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.35);
+}
+
+.thread-lineups__type-badge--actual {
+  border-color: rgba(52, 211, 153, 0.9);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+}
+
+/* Layout of teams within a row */
+
+.thread-lineups__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 32px;
+}
+
+.thread-lineups__team {
+  flex: 1 1 240px;
+  min-width: 0; /* let long names wrap */
+}
+
+.thread-lineups__team-name {
+  margin: 0 0 4px;
+  font-size: 0.98rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.thread-lineups__team-pill {
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* List of slots/players */
+
+.thread-lineups__list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  font-size: 0.86rem;
+}
+
+.thread-lineups__item + .thread-lineups__item {
+  margin-top: 2px;
+}
+
+.thread-lineups__slot {
+  display: inline-block;
+  min-width: 130px;
+  margin-right: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.thread-lineups__player {
+  font-weight: 500;
+}
+
+.thread-lineups__jersey {
+  margin-left: 4px;
+  font-size: 0.78rem;
+  opacity: 0.9;
+}
+
+.thread-lineups__pos-code {
+  margin-left: 4px;
+  font-size: 0.78rem;
+  opacity: 0.75;
+}
+
+/* Responsive tweaks */
+
+@media (max-width: 700px) {
+  .thread-lineups {
+    padding: 12px 12px 16px;
+  }
+
+  .thread-lineups__slot {
+    min-width: 0;
+    display: block;
+    margin-right: 0;
+  }
+
+  .thread-lineups__item {
+    padding: 2px 0;
+  }
+}
+/* ==========================
+   Lineups section
+   ========================== */
+
+/* ==========================
+   Lineups section
+   ========================== */
+
+.thread-lineups-section {
+  margin: 24px 0 28px;
+}
+
+/* Outer shell: inherit background, just add structure */
+.thread-lineups {
+  margin: 0;
+  padding: 14px 18px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle, rgba(148, 163, 184, 0.4));
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+
+.thread-lineups__header {
+  margin-bottom: 10px;
+}
+
+.thread-lineups__header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.thread-lineups__subtitle {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* One block per type: Expected / Final */
+.thread-lineups__row {
+  margin-top: 10px;
+}
+
+.thread-lineups__row-header {
+  margin-bottom: 6px;
+}
+
+.thread-lineups__type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--chip-border, rgba(148, 163, 184, 0.5));
+  background-color: var(--chip-bg, rgba(15, 23, 42, 0.9));
+  color: var(--text-muted);
+}
+
+.thread-lineups__type-badge--expected {
+  border-color: var(--accent-secondary-soft, rgba(148, 163, 184, 0.7));
+}
+
+.thread-lineups__type-badge--actual {
+  border-color: var(--accent-primary-border, rgba(15, 23, 42, 0.9));
+}
+
+/* Team columns (home/away) */
+
+.thread-lineups__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+}
+
+.thread-lineups__team {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.thread-lineups__team-name {
+  margin: 0 0 4px;
+  font-size: 0.98rem;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--text-main);
+}
+
+.thread-lineups__team-pill {
+  font-size: 0.7rem;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+
+/* Subsections: Forwards / Defense / Goalies / Other */
+
+.thread-lineups__section {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.thread-lineups__section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.thread-lineups__section-title {
+  margin: 0 0 3px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+/* Tables */
+
+.lineup-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  color: var(--text-main);
+}
+
+.lineup-table thead th {
+  padding: 4px 6px;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.45);
+  background-color: rgba(15, 23, 42, 0.75); /* dark band to pop against inherited bg */
+}
+
+.lineup-table tbody th,
+.lineup-table tbody td {
+  padding: 3px 6px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+}
+
+.lineup-table tbody th {
+  font-weight: 500;
+  width: 2.4rem;
+  color: var(--text-muted);
+}
+
+.lineup-table tbody td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Zebra striping – uses surface tokens so it plays nice with any team colors */
+.lineup-table tbody tr:nth-child(odd) {
+  background-color: rgba(11, 18, 32, 0.85); /* close to --bg-surface */
+}
+
+.lineup-table tbody tr:nth-child(even) {
+  background-color: rgba(17, 24, 39, 0.78); /* close to --bg-surface-alt */
+}
+
+/* Slight hover to make rows feel interactive without screaming */
+.lineup-table tbody tr:hover {
+  background-color: var(--accent-secondary-soft, rgba(148, 163, 184, 0.18));
+}
+
+/* Extras list (fallback weird positions) */
+
+.thread-lineups__extras-list {
+  margin: 4px 0 0;
+  padding-left: 16px;
+  font-size: 0.8rem;
+  color: var(--text-main);
+}
+
+.thread-lineups__extras-list li + li {
+  margin-top: 2px;
+}
+
+.thread-lineups__slot {
+  font-weight: 500;
+  margin-right: 4px;
+  color: var(--text-muted);
+}
+
+/* Responsive tweaks */
+
+@media (max-width: 800px) {
+  .thread-lineups {
+    padding: 12px 12px 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .thread-lineups__grid {
+    gap: 14px 0;
+  }
+}
+/* CONFIRMED (green) */
+tr.goalie-status--confirmed td{
+  background: color-mix(in srgb, #34d399 20%, #0f1115 80%);
+}
+
+/* EXPECTED (blue-ish, optional — change if you want) */
+tr.goalie-status--expected td{
+  background: color-mix(in srgb, #60a5fa 18%, #0f1115 82%);
+}
+
+/* Any OTHER status (orange) */
+tr.goalie-row[class*="goalie-status--"]:not(.goalie-status--confirmed):not(.goalie-status--expected) td{
+  background: color-mix(in srgb, #f97316 20%, #0f1115 80%); /* orange */
+}
+/* ==========================================================
+   Line cards (Forwards/Defense/Goalies)
+   ========================================================== */
+
+.lu-cards{
+  display: grid;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* 2-up cards on wide screens, 1-up on narrow */
+@media (min-width: 720px){
+  .lu-cards--F,
+  .lu-cards--D{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.lu-card{
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(2, 6, 23, 0.55);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+.lu-card__hdr{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  background: rgba(15, 23, 42, 0.75);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.20);
+}
+
+.lu-card__title{
+  font-weight: 800;
+  letter-spacing: .03em;
+  font-size: .80rem;
+  text-transform: uppercase;
+  color: var(--text-main, #e5e7eb);
+}
+
+.lu-card__grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+}
+
+.lu-card--D .lu-card__grid{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lu-card--G .lu-card__grid{
+  grid-template-columns: 1fr;
+}
+
+.lu-slot__pos{
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-muted, rgba(229,231,235,.75));
+  margin-bottom: 6px;
+}
+
+.lu-player{
+  border: 1px solid rgba(148,163,184,0.18);
+  border-radius: 10px;
+  padding: 8px 8px 7px;
+  background: rgba(0,0,0,0.22);
+}
+
+.lu-player__name{
+  font-weight: 700;
+  font-size: .90rem;
+  line-height: 1.15;
+}
+
+.lu-player__jersey{
+  font-size: .78rem;
+  opacity: .85;
+  margin-left: 6px;
+}
+
+.lu-player__stats{
+  margin-top: 6px;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.lu-stat{
+  display:inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(148,163,184,0.22);
+  background: rgba(15, 23, 42, 0.55);
+  font-size: .74rem;
+}
+
+.lu-stat__k{
+  opacity: .72;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.lu-stat__v{
+  font-variant-numeric: tabular-nums;
+  font-weight: 900;
+}
+
+/* Goalies as cards */
+.lu-goalie .lu-card__body{
+  padding: 10px;
+}
+
+.lu-goalie--confirmed{
+  border-color: rgba(52, 211, 153, 0.35);
+}
+
+.lu-goalie--expected{
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+.lu-goalie--other{
+  border-color: rgba(249, 115, 22, 0.35);
+}
+/* ==========================================================
+   Lineups cards layout (preserve line structure)
+   HTML classes from thread_api_lineups.php:
+     .thread-lineups--cards
+     .line-cards .line-cards--forwards .line-cards--defense
+     .line-card .line-card__hdr .line-card__players
+     .player-card .player-card__name .player-card__meta
+     .adv-chips .adv-chip (cf/ff/gar/war)
+   ========================================================== */
+
+.thread-lineups--cards .line-cards{
+  display: grid;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* Each line/pair card */
+.thread-lineups--cards .line-card{
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(2, 6, 23, 0.55);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+.thread-lineups--cards .line-card__hdr{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--shark-orange) 26%, var(--shark-deep) 74%) 0%,
+    color-mix(in srgb, var(--shark-orange) 18%, var(--shark-deep) 82%) 35%,
+    color-mix(in srgb, var(--shark-orange) 22%, var(--shark-deep) 78%) 65%,
+    color-mix(in srgb, var(--shark-orange) 34%, var(--shark-deep) 66%) 100%
+  );
+  border-bottom: 1px solid rgba(148, 163, 184, 0.20);
+  font-weight: 900;
+  letter-spacing: .04em;
+  font-size: .78rem;
+  text-transform: uppercase;
+  color: var(--text-main, #e5e7eb);
+}
+
+/* IMPORTANT: preserve structure on narrow screens by scrolling horizontally */
+.thread-lineups--cards .line-card__players{
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
+/* 3 across for forwards (LW/C/RW) */
+.thread-lineups--cards .line-cards--forwards .line-card__players{
+  grid-template-columns: repeat(3, minmax(160px, 1fr));
+}
+
+/* 2 across for defense pairs (LD/RD) */
+.thread-lineups--cards .line-cards--defense .line-card__players{
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+}
+
+/* Player card */
+.thread-lineups--cards .player-card{
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 10px;
+  padding: 8px 9px 7px;
+  background: rgba(0,0,0,0.22);
+  min-width: 160px; /* helps preserve structure via scroll */
+}
+
+.thread-lineups--cards .player-card__name{
+  font-weight: 800;
+  font-size: .92rem;
+  line-height: 1.15;
+  color: var(--text-main, #e5e7eb);
+}
+
+.thread-lineups--cards .player-card__meta{
+  margin-top: 4px;
+  font-size: .75rem;
+  opacity: .82;
+  color: var(--text-muted, rgba(229,231,235,.75));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Advanced stat chips */
+.thread-lineups--cards .adv-chips{
+  margin-top: 7px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.thread-lineups--cards .adv-chip{
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(148,163,184,0.22);
+  background: rgba(15, 23, 42, 0.55);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .02em;
+  color: var(--text-main, #e5e7eb);
+  white-space: nowrap;
+}
+
+.thread-lineups--cards .adv-chip--cf{ border-color: rgba(96,165,250,0.35); }
+.thread-lineups--cards .adv-chip--ff{ border-color: rgba(56,189,248,0.35); }
+.thread-lineups--cards .adv-chip--gar{ border-color: rgba(52,211,153,0.35); }
+.thread-lineups--cards .adv-chip--war{ border-color: rgba(245,158,11,0.35); }
+
+/* Optional: tighten on small screens but keep structure */
+@media (max-width: 520px){
+  .thread-lineups--cards .line-card__players{
+    padding: 9px;
+    gap: 7px;
+  }
+  .thread-lineups--cards .player-card{
+    min-width: 150px;
+  }
+}
+/* ==========================================================
+   NO horizontal scroll: squeeze cards to fit
+   ========================================================== */
+
+/* Stop horizontal scrolling */
+.thread-lineups--cards .line-card__players{
+  overflow-x: visible;        /* was auto */
+  -webkit-overflow-scrolling: auto;
+  scrollbar-gutter: auto;
+}
+
+/* Let columns shrink instead of forcing width */
+.thread-lineups--cards .line-cards--forwards .line-card__players{
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* was minmax(160px,1fr) */
+}
+.thread-lineups--cards .line-cards--defense .line-card__players{
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* was minmax(180px,1fr) */
+}
+
+/* Allow cards to shrink (this is the big one) */
+.thread-lineups--cards .player-card{
+  min-width: 0;               /* was 160px */
+  padding: 7px 8px 6px;       /* slightly tighter */
+}
+
+/* Prevent long names from forcing width */
+.thread-lineups--cards .player-card__name{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;      /* keep it compact */
+  -webkit-box-orient: vertical;
+}
+
+/* Tighten typography a bit on smaller screens */
+@media (max-width: 520px){
+  .thread-lineups--cards .player-card__name{ font-size: .86rem; }
+  .thread-lineups--cards .player-card__meta{ font-size: .70rem; }
+  .thread-lineups--cards .adv-chip{ font-size: .66rem; padding: 1px 6px; }
+}
+
+/* If it still feels cramped on very small screens, hide meta first */
+@media (max-width: 420px){
+  .thread-lineups--cards .player-card__meta{ display:none; }
+}
+
+/* Nuclear option (only if you want it): hide chips at tiny widths */
+/*
+@media (max-width: 380px){
+  .thread-lineups--cards .adv-chips{ display:none; }
+}
+*/
+

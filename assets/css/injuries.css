@@ -1,0 +1,141 @@
+/* ==========================
+   Injuries section
+   ========================== */
+
+.thread-injuries-section {
+  margin: 24px 0 28px;
+}
+
+/* Outer shell */
+.thread-injuries {
+  margin: 0;
+  padding: 14px 18px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle, rgba(148, 163, 184, 0.4));
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.04), 
+  transparent 55%), linear-gradient(135deg, rgba(0, 0, 0, 0.96) 0%,
+   var(--accent-secondary-soft) 40%, rgba(0, 0, 0, 0.96) 100%);
+}
+
+/* Header */
+.thread-injuries__header {
+  margin-bottom: 10px;
+}
+
+.thread-injuries__header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.thread-injuries__subtitle {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Grid layout for both teams */
+.thread-injuries__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 32px;
+}
+
+.thread-injuries__team {
+  flex: 1 1 340px;
+  min-width: 280px;
+}
+
+.thread-injuries__team-heading {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* ==========================
+   Injury Table
+   ========================== */
+
+.injury-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  color: var(--text-main);
+}
+
+.injury-table thead th {
+  padding: 4px 6px;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.45);
+  background-color: rgba(15, 23, 42, 0.75);
+}
+
+.injury-table tbody th,
+.injury-table tbody td {
+  padding: 3px 6px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+}
+
+.injury-table tbody th {
+  font-weight: 500;
+  width: 2.4rem;
+  color: var(--text-muted);
+}
+
+.injury-table tbody td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Zebra striping */
+.injury-table tbody tr:nth-child(odd) {
+  background-color: rgba(11, 18, 32, 0.85);
+}
+
+.injury-table tbody tr:nth-child(even) {
+  background-color: rgba(17, 24, 39, 0.78);
+}
+
+/* Hover */
+.injury-table tbody tr:hover {
+  background-color: var(--accent-secondary-soft, rgba(148, 163, 184, 0.18));
+}
+
+/* ==========================
+   Special States
+   ========================== */
+
+.thread-injuries__none {
+  margin: 6px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+/* Optional: highlight OUT / QUESTIONABLE / IR */
+.injury-table tbody tr td:last-child {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.injury-table tbody tr td:last-child:contains("OUT"),
+.injury-table tbody tr td:last-child:contains("IR") {
+  color: #f87171;
+}
+
+.injury-table tbody tr td:last-child:contains("QUESTIONABLE") {
+  color: #facc15;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .thread-injuries {
+    padding: 12px 12px 16px;
+  }
+
+  .thread-injuries__grid {
+    gap: 18px 0;
+  }
+}

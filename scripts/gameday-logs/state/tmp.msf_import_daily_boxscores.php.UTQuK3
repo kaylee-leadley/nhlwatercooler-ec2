@@ -1,0 +1,27 @@
+=== Daily boxscore import for 2025-12-20 (season 2025-2026) ===
+team_gamelogs:   26 rows.
+player_gamelogs: 494 rows.
+Game 151402 (PHI @ NYR) 2025-12-20...
+[daily boxscores] multiple OT/SO flags for game 151402 team PHI: {"wins":0,"losses":0,"overtimeWins":0,"overtimeLosses":1,"shootoutWins":0,"shootoutLosses":1,"points":1,"pointsPercent":0.25}
+  Boxscore stored/updated for game 151402.
+Game 151403 (DET @ WSH) 2025-12-20...
+  Boxscore stored/updated for game 151403.
+Game 151404 (CHI @ OTT) 2025-12-20...
+  Boxscore stored/updated for game 151404.
+Game 151405 (EDM @ MIN) 2025-12-20...
+  Boxscore stored/updated for game 151405.
+Game 151406 (NYI @ BUF) 2025-12-20...
+[daily boxscores] multiple OT/SO flags for game 151406 team NYI: {"wins":0,"losses":0,"overtimeWins":0,"overtimeLosses":1,"shootoutWins":0,"shootoutLosses":1,"points":1,"pointsPercent":0.25}
+  Boxscore stored/updated for game 151406.
+Game 151407 (STL @ FLO) 2025-12-20...
+PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1598 Binary logging not possible. Message: An error occurred during flush stage of the commit. 'binlog_error_action' is set to 'ABORT_SERVER'. Server is being stopped. in /var/www/nhlwatercooler/public/scripts/msf_import_daily_boxscores.php:487
+Stack trace:
+#0 /var/www/nhlwatercooler/public/scripts/msf_import_daily_boxscores.php(487): PDOStatement->execute()
+#1 {main}
+  thrown in /var/www/nhlwatercooler/public/scripts/msf_import_daily_boxscores.php on line 487
+
+Fatal error: Uncaught PDOException: SQLSTATE[HY000]: General error: 1598 Binary logging not possible. Message: An error occurred during flush stage of the commit. 'binlog_error_action' is set to 'ABORT_SERVER'. Server is being stopped. in /var/www/nhlwatercooler/public/scripts/msf_import_daily_boxscores.php:487
+Stack trace:
+#0 /var/www/nhlwatercooler/public/scripts/msf_import_daily_boxscores.php(487): PDOStatement->execute()
+#1 {main}
+  thrown in /var/www/nhlwatercooler/public/scripts/msf_import_daily_boxscores.php on line 487

@@ -1,0 +1,191 @@
+/* ==========================
+   Boxscore / scorers section
+   ========================== */
+
+.thread-boxscore-section {
+  margin: 24px 0 32px;
+}
+
+/* Outer shell – match injuries card */
+.thread-boxscore {
+  margin: 0;
+  padding: 14px 18px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle, rgba(148, 163, 184, 0.4));
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.04), 
+  transparent 55%), linear-gradient(135deg, rgba(0, 0, 0, 0.96) 0%,
+   var(--accent-secondary-soft) 40%, rgba(0, 0, 0, 0.96) 100%);
+}
+
+.thread-boxscore__header {
+  margin-bottom: 10px;
+}
+
+.thread-boxscore__header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.thread-boxscore__subtitle {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Grid layout: stats table + scorers column */
+.thread-boxscore__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 32px;
+  align-items: flex-start;
+}
+
+.thread-boxscore__col {
+  flex: 1 1 340px;
+  min-width: 280px;
+}
+
+/* ==========================
+   Boxscore table (match injury-table)
+   ========================== */
+
+.boxscore-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  color: var(--text-main);
+}
+
+.boxscore-table thead th {
+  font-size: medium;
+  padding: 4px 6px;
+  font-weight: 600;
+  text-align: right;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.45);
+  /* background-color: rgba(15, 23, 42, 0.75); */
+}
+
+/* first column: stat label left-aligned */
+.boxscore-table thead th:first-child {
+  text-align: left;
+}
+
+.boxscore-table tbody th,
+.boxscore-table tbody td {
+  padding: 3px 6px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+}
+
+.boxscore-table tbody th {
+  text-align: left;
+  font-weight: 500;
+  width: 9rem;
+  color: var(--text-main);
+}
+
+.boxscore-table tbody td {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Zebra striping like injury-table */
+.boxscore-table tbody tr:nth-child(odd) {
+  background-color: rgba(11, 18, 32, 0.85);
+}
+
+.boxscore-table tbody tr:nth-child(even) {
+  background-color: rgba(17, 24, 39, 0.78);
+}
+
+/* Hover */
+.boxscore-table tbody tr:hover {
+  background-color: var(--accent-secondary-soft, rgba(148, 163, 184, 0.18));
+}
+
+/* ==========================
+   Scorers column
+   ========================== */
+
+.thread-scorers {
+  border-left: 1px solid rgba(148, 163, 184, 0.45);
+  padding-left: 18px;
+}
+
+.thread-scorers__team + .thread-scorers__team {
+  margin-top: 14px;
+}
+
+.thread-scorers__heading {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Scorers list: table-like styling to match injury table */
+.thread-scorers__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.9);
+  font-size: 0.82rem;
+}
+
+/* Each scorer row */
+.thread-scorers__list li {
+  padding: 4px 8px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+}
+
+/* Zebra striping like injury-table */
+.thread-scorers__list li:nth-child(odd) {
+  background-color: rgba(11, 18, 32, 0.85);
+}
+
+.thread-scorers__list li:nth-child(even) {
+  background-color: rgba(17, 24, 39, 0.78);
+}
+
+/* Hover effect */
+.thread-scorers__list li:hover {
+  background-color: var(--accent-secondary-soft, rgba(148, 163, 184, 0.18));
+}
+
+.thread-scorers__none {
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+/* ==========================
+   Responsive tweaks
+   ========================== */
+
+@media (max-width: 800px) {
+  .thread-boxscore {
+    padding: 12px 12px 16px;
+  }
+
+  .thread-boxscore__grid {
+    gap: 18px 0;
+  }
+
+  .thread-scorers {
+    border-left: none;
+    border-top: 1px solid rgba(148, 163, 184, 0.45);
+    padding-left: 0;
+    margin-top: 16px;
+    padding-top: 12px;
+  }
+}

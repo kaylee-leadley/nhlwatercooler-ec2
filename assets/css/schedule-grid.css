@@ -1,0 +1,452 @@
+/* assets/css/schedule-grid.css */
+
+/* ==========================
+   Page shell
+   ========================== */
+body {
+  background: var(--bg-surface-alt-grad);
+  border-radius: 6px;
+}
+.site-header {
+  border-bottom: 1px solid #FFF;
+}
+.page-schedule .schedule-grid-page {
+  max-width: 1100px;
+  margin: 24px auto 32px;
+  padding: 0 16px;
+}
+
+/* (Optional) Hint to browsers for dark form widgets.
+   NOTE: does NOT reliably style the opened <select> popup on Windows/Chrome,
+   but it won't hurt. */
+.page-schedule {
+  color-scheme: dark;
+}
+
+/* Header: grid so arrows can sit left/right */
+.schedule-grid-page__header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* Team mode: no arrows, center content */
+.schedule-grid-page__header--team {
+  grid-template-columns: 1fr;
+}
+
+.schedule-grid-page__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.schedule-grid-page__range {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Team mode range line */
+.schedule-grid-page__range--team {
+  margin-top: 2px;
+}
+
+/* Desktop vs mobile labels (text + range) */
+.schedule-grid-page__title--mobile,
+.schedule-grid-page__range--mobile {
+  display: none;
+}
+
+/* ==========================
+   Nav arrows
+   ========================== */
+
+.schedule-grid-page__nav {
+  display: flex;
+  align-items: center;
+}
+
+.schedule-grid-page__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text-main);
+  background: color-mix(in srgb, var(--accent-secondary) 60%, #020617);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.schedule-grid-page__arrow:hover {
+  background: var(--accent-secondary);
+}
+
+/* ==========================
+   Team switch (dropdown)
+   ========================== */
+
+.schedule-team-switch {
+  margin-top: 8px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.schedule-team-switch label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.schedule-team-switch select {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  padding: 6px 28px 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: #050b18 !important;     /* closed control */
+  color: #eaf0ff !important;          /* closed control text */
+  color-scheme: dark;                 /* hint */
+}
+
+/*
+  IMPORTANT:
+  On Windows/Chrome, the OPENED dropdown list is OS-rendered.
+  It may keep a white background but still apply your option text color.
+  If you force option text to white, you get white-on-white (invisible).
+  So: DO NOT force option colors. Reset them.
+*/
+.schedule-team-switch option,
+.schedule-team-switch optgroup {
+  background: initial !important;
+  color: initial !important;
+}
+
+/* ==========================
+   Wrapper & table (GRID)
+   ========================== */
+
+.schedule-grid-wrap {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.02), transparent 55%),
+    color-mix(in srgb, var(--bg-surface-alt) 20%, #020617);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
+}
+
+.schedule-grid {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.86rem;
+  color: var(--text-main);
+  background: transparent;
+}
+
+.schedule-grid thead th {
+  padding: 8px 10px;
+  font-weight: 600;
+  text-align: center;
+  background-color: color-mix(in srgb, var(--accent-secondary) 75%, #020617);
+  border-bottom: 1px solid #FFF;
+}
+
+.schedule-grid__col-team {
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  width: 80px;
+  background: color-mix(in srgb, var(--accent-secondary) 80%, #020617);
+  border-right: 1px solid var(--accent-secondary);
+}
+
+.schedule-grid__dow { display: block; font-weight: 700; }
+.schedule-grid__date { display: block; font-size: 0.75rem; }
+
+.schedule-grid tbody tr:nth-child(odd) {
+  background: color-mix(in srgb, var(--accent-primary-soft) 18%, #020617);
+}
+.schedule-grid tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--accent-primary-soft) 8%, #020617);
+}
+
+.schedule-grid__team-label {
+  font-weight: 600;
+  padding: 10px 10px;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: color-mix(in srgb, var(--accent-secondary) 45%, #020617);
+  border-right: 1px solid #FFF;
+  width:80px;
+}
+
+.schedule-grid__cell {
+  padding: 6px 8px;
+  height: 56px;
+  vertical-align: top;
+  text-align: center;
+}
+
+.schedule-grid__cell--game { border: solid 1px var(--border-subtle); }
+.schedule-grid__cell--b2b { box-shadow: 0 0 0 2px var(--accent-secondary) inset; }
+
+.schedule-grid__matchup + .schedule-grid__matchup { margin-top: 4px; }
+.schedule-grid__matchup-primary { display: block; font-weight: 600; }
+.schedule-grid__time { display: block; font-size: 0.75rem; color: var(--text-muted); }
+
+/* ==========================
+   TEAM MODE (full schedule)
+   ========================== */
+
+.schedule-team-mode { margin-top: 12px; }
+
+.schedule-team-mode__empty {
+  padding: 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--accent-primary-soft) 12%, #020617);
+}
+
+/* Polished container */
+.schedule-team-mode__card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent-secondary) 55%, transparent);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255,255,255,0.03), transparent 55%),
+    color-mix(in srgb, var(--accent-primary-soft) 16%, #020617);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.55);
+}
+
+/* Scroll container */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.schedule-team-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: unset;
+  font-size: 0.9rem;
+}
+
+.schedule-team-table th,
+.schedule-team-table td {
+  padding: 10px 12px;
+  white-space: nowrap;
+}
+
+.schedule-team-table th {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.schedule-team-table__dateline {
+  display: inline-flex;
+  gap: 10px;
+  align-items: baseline;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.schedule-team-table__t {
+  font-weight: 800;
+  color: var(--text-main);
+  font-size: 0.8rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-primary-soft) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-secondary) 35%, transparent);
+}
+
+.schedule-team-table__game {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.schedule-team-table__side {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.schedule-team-table__logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.45));
+}
+
+.schedule-team-table__team {
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.schedule-team-table__score {
+  font-weight: 950;
+  font-variant-numeric: tabular-nums;
+  min-width: 22px;
+  text-align: center;
+}
+
+.schedule-team-table__rel {
+  min-width: 34px;
+  text-align: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-secondary) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-secondary) 45%, transparent);
+  color: var(--text-main);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Ensure schedule rows get the gradient variable too */
+.rankings-table__row[class*="ncaa-team-"],
+.standings-table__row[class*="ncaa-team-"],
+.stats-table__row[class*="ncaa-team-"],
+.thread-card[class*="ncaa-team-"] {
+  --team-gradient: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--shark-teal) 26%, var(--shark-deep) 74%) 0%,
+    color-mix(in srgb, var(--shark-teal) 18%, var(--shark-deep) 82%) 35%,
+    color-mix(in srgb, var(--shark-orange) 22%, var(--shark-deep) 78%) 65%,
+    color-mix(in srgb, var(--shark-orange) 34%, var(--shark-deep) 66%) 100%
+  );
+}
+
+/* Row “card” feel */
+.schedule-team-table tbody tr.schedule-team-table__row {
+  background: var(--team-gradient);
+  border: 1px solid color-mix(in srgb, var(--accent-secondary) 45%, transparent);
+  border-left-width: 4px;
+  transition: transform 120ms ease, filter 120ms ease, border-color 120ms ease;
+}
+
+.schedule-team-table tbody tr.schedule-team-table__row:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  border-color: color-mix(in srgb, var(--accent-secondary) 70%, transparent);
+}
+
+/* Upcoming vs past */
+.schedule-team-table__row--past {
+  filter: saturate(0.92);
+  opacity: 0.92;
+}
+
+.schedule-team-table__row--upcoming {
+  opacity: 1;
+}
+
+.schedule-team-table__row--upcoming .schedule-team-table__score {
+  color: color-mix(in srgb, var(--text-main) 85%, var(--text-muted));
+}
+
+/* Win/Loss borders */
+.schedule-team-table__row--win  { border-color: color-mix(in srgb, #22c55e 70%, transparent) !important; }
+.schedule-team-table__row--loss { border-color: color-mix(in srgb, #ef4444 70%, transparent) !important; }
+.schedule-team-table__row--tie  { border-color: color-mix(in srgb, var(--accent-secondary) 75%, transparent) !important; }
+
+/* ==========================
+   Responsive tweaks
+   ========================== */
+
+@media (max-width: 900px) {
+  .schedule-grid { font-size: 0.8rem; }
+  .schedule-grid__col-team { width: 64px; }
+  .schedule-grid__date { font-size: 0.7rem; }
+}
+
+@media (max-width: 700px) {
+  .schedule-grid-page__title--desktop,
+  .schedule-grid-page__range--desktop {
+    display: none;
+  }
+
+  .schedule-grid-page__title--mobile,
+  .schedule-grid-page__range--mobile {
+    display: inline;
+  }
+
+  .schedule-grid-page__arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+
+  /* GRID: show only 5 days */
+  .schedule-grid thead th:nth-child(n+7),
+  .schedule-grid tbody td:nth-child(n+7) {
+    display: none;
+  }
+
+  .page-schedule .schedule-grid-page {
+    max-width: unset;
+    margin: 16px 0 24px;
+    padding: 0 8px;
+  }
+
+  /* TEAM MODE: rankings-style cards */
+  .schedule-team-table thead { display: none; }
+  .schedule-team-table,
+  .schedule-team-table tbody,
+  .schedule-team-table tr,
+  .schedule-team-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .schedule-team-table tr {
+    margin-bottom: 10px;
+    padding: 12px;
+    border: 1px solid var(--accent-secondary);
+    border-radius: 14px;
+    background: var(--team-gradient);
+    box-shadow: 0 10px 18px rgba(0,0,0,0.35);
+  }
+
+  .schedule-team-table tr.schedule-team-table__row--win  { border-color: var(--success-border, #22c55e); }
+  .schedule-team-table tr.schedule-team-table__row--loss { border-color: var(--danger-border, #ef4444); }
+
+  .schedule-team-table td {
+    border-bottom: 0;
+    padding: 0;
+    white-space: normal;
+  }
+
+  .schedule-team-table__date { margin-bottom: 10px; }
+
+  .schedule-team-table__dateline {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .schedule-team-table__game { justify-content: space-between; gap: 10px; }
+  .schedule-team-table__logo { width: 26px; height: 26px; }
+  .schedule-team-table__score { font-size: 1.15rem; min-width: 24px; }
+  .schedule-team-table__rel { min-width: 40px; }
+}
+.schedule-grid__badge--goalie {
+  background: var(--danger-border)!important;
+}

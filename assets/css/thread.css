@@ -1,0 +1,146 @@
+/* assets/css/thread.css */
+
+/* ==========================
+   Thread header
+   ========================== */
+
+.thread-header {
+  margin-bottom: 24px;
+  padding: 18px 20px 20px;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.04), 
+  transparent 55%), linear-gradient(135deg, rgba(0, 0, 0, 0.96) 0%,
+   var(--accent-secondary-soft) 40%, rgba(0, 0, 0, 0.96) 100%);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
+}
+
+.thread-header h1 {
+  margin-bottom: 8px;
+  font-size: 1.6rem;
+}
+
+.thread-header__meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.thread-header__meta span {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+/* Header image (optional) */
+.thread-header__image-wrap {
+  margin: 10px 0 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--accent-primary-soft);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
+}
+
+/* Thread description block */
+.thread-description {
+  font-size: 0.95rem;
+  background: var(--bg-surface-alt);
+  color: var(--text-main);
+  border-radius: 10px;
+  padding: 24px 28px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.65);
+}
+.status {
+  font-weight:bolder;
+}
+/* ==========================
+   Admin actions (Edit / Delete)
+   ========================== */
+
+.thread-admin-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin: 14px 0 18px;
+}
+
+.thread-admin-actions__delete:hover {
+  background: rgba(248, 113, 113, 0.24);
+  color: #fecaca;
+}
+.thread-header__title-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap; /* lets title wrap nicely on small screens */
+}
+
+.thread-header__title{
+  margin:0;
+}
+
+.thread-header__logo-strip--inline{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:0 0 auto;
+}
+
+.thread-header__logo{
+  width:28px;
+  height:28px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.thread-header__logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+.thread-header__at{
+  font-weight:700;
+  opacity:.9;
+  line-height:1;
+}
+.gdp__form-grid, .gdp__stars {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+}
+h3,h4 {
+  color:var(--accent-secondary);
+}
+.gdp__hdr {
+  margin-top:20px;
+}
+/* ==========================
+   Responsive tweaks
+   ========================== */
+@media (max-width: 700px) {
+  .gdp__form-grid, .gdp__stars {
+    display:block;
+  }
+  .thread-header {
+    padding: 14px 14px 16px;
+  }
+
+  .thread-description {
+    padding: 18px 14px;
+  }
+
+  .post {
+    padding: 10px /* shrink right padding on small screens */
+  }
+
+  .thread-boxscore {
+    padding: 14px 14px 18px;
+  }
+}

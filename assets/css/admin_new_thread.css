@@ -1,0 +1,202 @@
+/* assets/css/admin_thread.css */
+
+/* Constrain content width on admin thread pages */
+body.page-admin-thread .site-main {
+  max-width: 720px;
+}
+
+/* ---------- Shell ---------- */
+
+.admin-thread-main {
+  margin: 0 auto;
+  margin-top: 16px;
+  background: var(--bg-surface);
+  padding: 20px 22px 24px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* Top bar */
+
+.admin-thread-main .top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.admin-thread-main .top-bar h1 {
+  margin: 0;
+}
+
+.top-bar__nav a {
+  font-size: 0.9rem;
+  color: var(--accent-primary);
+}
+
+/* ---------- Alerts ---------- */
+
+.admin-thread-main .alert {
+  padding: 10px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-subtle);
+}
+
+.admin-thread-main .alert-error {
+  background: var(--danger-bg);
+  border-color: var(--danger-border);
+}
+
+/* ---------- Form layout ---------- */
+
+.thread-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-row--two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+  gap: 16px;
+}
+
+@media (max-width: 720px) {
+  .form-row--two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-field label,
+.form-row label {
+  font-size: 0.9rem;
+}
+
+.label-note {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-left: 4px;
+}
+
+/* Inputs / textarea */
+
+.thread-form input[type="text"],
+.thread-form input[type="url"],
+.thread-form input[type="date"],
+.thread-form textarea {
+  padding: 7px 9px;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.thread-form input:focus,
+.thread-form textarea:focus {
+  outline: none;
+  border-color: var(--accent-primary-border);
+  box-shadow: 0 0 0 1px var(--accent-primary-soft);
+}
+
+.thread-form textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+/* ---------- Actions ---------- */
+
+.form-actions {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Uses .button-primary from main.css for the main action */
+.form-actions .button-primary {
+  /* no overrides needed, just here if you want tweaks later */
+}
+
+/* Optional secondary link styles inside actions */
+.form-actions a {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+/* Add file inputs to the existing field styling */
+.thread-form input[type="text"],
+.thread-form input[type="date"],
+.thread-form input[type="file"],
+.thread-form textarea {
+  padding: 7px 9px;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+/* Keep the two columns balanced on desktop */
+.form-row--two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start; /* aligns the file input with the date field */
+}
+
+/* Label note stays on one line on wider screens if possible */
+.label-note {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-left: 4px;
+  white-space: nowrap;
+}
+/* General form row spacing */
+.thread-form .form-row {
+  margin-bottom: 16px;
+}
+
+/* Two-column row (Game Date + Header Image) */
+.thread-form .form-row--two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+/* Make labels sit above their fields, including two-col fields */
+.thread-form .form-field label,
+.thread-form > label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+/* Note next to label text */
+.thread-form .label-note {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  margin-left: 4px;
+}
+
+/* Inputs (including file) share same styling */
+.thread-form input[type="text"],
+.thread-form input[type="date"],
+.thread-form input[type="file"],
+.thread-form textarea {
+  width: 100%;
+  padding: 7px 9px;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-size: 0.95rem;
+}

@@ -1,0 +1,367 @@
+/* assets/css/ncaa-stats.css */
+
+/* ==========================
+   NCAA Stats page layout
+   ========================== */
+
+.page-stats__section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.page-stats__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.page-stats__subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 4px 0 0;
+}
+
+.page-stats__note {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* Filters row */
+.page-stats__filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.page-stats__filters label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.page-stats__filters select {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  padding: 6px 28px 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: var(--accent-primary);
+  color: var(--text-main);
+}
+
+/* Mobile header tweaks */
+@media (max-width: 700px) {
+  .page-stats__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .page-stats__filters {
+    align-self: flex-start;
+  }
+}
+
+/* ==========================
+   Stats card & table (desktop/tablet)
+   ========================== */
+
+.stats-card {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--accent-secondary);
+  background: var(--team-gradient);
+}
+
+/* Scroll container */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.table-scroll,
+.stats-card {
+  min-width: 0;
+}
+
+/* Desktop table */
+.stats-table {
+  width: 100%;
+  font-size: 0.9rem;
+  background: var(--accent-primary);
+  border-collapse: collapse;
+}
+
+.stats-table thead {
+  background: var(--accent-secondary-soft);
+}
+
+.stats-table th,
+.stats-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+}
+
+.stats-table th {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Column alignment */
+.stats-table__col-player,
+.stats-table__cell-player,
+.stats-table__col-team,
+.stats-table__cell-team {
+  text-align: left;
+}
+
+.stats-table__col-gp,
+.stats-table__col-g,
+.stats-table__col-a,
+.stats-table__col-pts,
+.stats-table__col-plusminus,
+.stats-table__col-pim,
+.stats-table__col-shots,
+.stats-table__col-fo,
+.stats-table__col-blocks {
+  width: 70px;
+  text-align: center;
+}
+
+.stats-table__col-team {
+  width: 90px;
+}
+
+/* Zebra + hover (match mobile palette) */
+.stats-table tbody tr {
+  background: var(--team-gradient
+);
+}
+
+.stats-table tbody tr:nth-child(2n) {
+  background: var(--team-gradient
+);
+}
+
+.stats-table tbody tr:hover {
+  filter: brightness(1.08);
+}
+
+/* Numeric formatting */
+.stats-table td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sortable header styling */
+.js-sortable-table thead th {
+  cursor: pointer;
+  user-select: none;
+}
+
+.js-sortable-table thead th::after {
+  content: '';
+  display: inline-block;
+  margin-left: 6px;
+  border: 4px solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.25);
+  opacity: 0.6;
+  transform: translateY(-1px);
+}
+
+.js-sortable-table thead th[data-sort-direction="asc"]::after {
+  border-top-color: transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.9);
+}
+
+.js-sortable-table thead th[data-sort-direction="desc"]::after {
+  border-top-color: rgba(255, 255, 255, 0.9);
+  border-bottom-color: transparent;
+}
+
+/* Player cell content */
+.stats-table__player {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.stats-table__player-logo {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats-table__player-logo img {
+  max-width: unset;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Rank badge (hidden on desktop by default) */
+.stats-table__rank {
+  display: none;
+}
+
+/* Empty state */
+.page-stats__empty {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ==========================
+   MOBILE: 2-row stat grid
+   - 6 stats on row 1
+   - rest on row 2
+   - rank badge top-left
+   ========================== */
+
+@media (max-width: 700px) {
+  .stats-card {
+    background-color: unset;
+    border: 0;
+  }
+
+  .table-scroll {
+    overflow: visible; /* no horizontal table scrolling on mobile cards */
+  }
+
+  .stats-table {
+    width: 100%;
+    min-width: 100%;
+    border-collapse: separate;
+    background-color: unset;
+    background: unset;
+  }
+
+  .stats-table thead {
+    display: none; /* labels come from data-label */
+  }
+
+  /* Each TR is a 6-col grid card */
+  .stats-table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 10px;
+    padding: 12px;
+    border: 1px solid var(--accent-secondary);
+    border-radius: 6px;
+    background: var(--team-gradient
+);
+  }
+
+  .stats-table tbody tr:nth-child(2n) {
+    background: var(--accent-secondary-soft);
+    border-color: var(--team-gradient
+);
+  }
+
+  /* Remove default cell borders/padding */
+  .stats-table td {
+    border-bottom: 0;
+    padding: 0;
+    white-space: normal;
+  }
+
+  /* Player cell spans full width */
+  .stats-table__cell-player {
+    grid-column: 1 / -1;
+  }
+
+  .stats-table__player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    position: relative;
+  }
+
+  /* Rank badge now visible */
+  .stats-table__rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-main);
+    flex: 0 0 auto;
+  }
+
+  .stats-table__player-logo {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+  }
+
+  .stats-table__player-logo img {
+    height: 24px;
+  }
+
+  .stats-table__player-name {
+    font-weight: 800;
+    font-size: 1.02rem;
+    line-height: 1.15;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  /* Stat chips: each TD is one chip in the 6-col grid */
+  .stats-table__cell-gp,
+  .stats-table__cell-g,
+  .stats-table__cell-a,
+  .stats-table__cell-pts,
+  .stats-table__cell-plusminus,
+  .stats-table__cell-pim,
+  .stats-table__cell-shots,
+  .stats-table__cell-fo,
+  .stats-table__cell-blocks,
+  .stats-table__cell-team {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.05;
+  }
+
+  /* Label (from data-label) */
+  .stats-table td[data-label]::before {
+    content: attr(data-label);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.95;
+    font-weight: 700;
+  }
+
+  /* Make TEAM fill the last 2 columns so row 2 is "complete" (6 cols) */
+  .stats-table__cell-team {
+    grid-column: span 2;
+    text-align: center;
+  }
+}

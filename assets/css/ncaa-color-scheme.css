@@ -1,0 +1,1707 @@
+/*******************************************************
+ * NCAA TEAM COLOR SCHEMES
+ * Auto-generated from uploaded SVGs
+ * Class naming convention:
+ *     body.theme-team-<slug>
+ *
+ * Follows identical variable structure as NHL color-scheme.css
+ *******************************************************/
+/* assets/css/color-scheme.css */
+
+/* ---------- Design tokens (global + Sharks default) ---------- */
+
+:root {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Arial, sans-serif;
+
+/* Surfaces */
+--bg-main:        #070A0F; /* deep charcoal page base */
+--bg-surface:     #0E1116; /* cards / panels – graphite */
+--bg-surface-alt: #141820; /* subtle alt surface */
+
+/* Text */
+--text-main:  #F3F4F6;     /* neutral off-white */
+--text-muted: #B6BCC6;     /* cool gray, not blue */
+
+/* Borders */
+--border-subtle: rgba(160, 167, 178, 0.35); /* neutral gray */
+--border-strong: rgba(10, 12, 16, 0.92);    /* near-black */
+
+/* Semantic */
+--danger-bg:     rgba(248, 113, 113, 0.16);
+--danger-border: rgba(248, 113, 113, 0.75);
+
+--hdr-teal: rgba(0, 190, 185, 0.18);     /* subtle teal glow */
+--hdr-teal-2: rgba(0, 190, 185, 0.10);   /* softer */
+--hdr-char-1: #151a22;
+--hdr-char-2: #0f131a;
+
+--header-grad: linear-gradient(
+  135deg,
+  color-mix(in srgb, var(--hdr-char-1) 88%, var(--hdr-teal) 12%) 0%,
+  color-mix(in srgb, var(--hdr-char-2) 92%, var(--hdr-teal-2) 8%) 55%,
+  #0b0f15 100%
+);
+/* Layout-level backgrounds (shared by all teams) */
+--page-bg: linear-gradient(
+  90deg,
+  #070A10 0%,
+  #0B1018 22%,
+  color-mix(in srgb, #0E141E 88%, rgba(0, 190, 185, 0.18) 12%) 55%,
+  color-mix(in srgb, #121A26 82%, rgba(0, 190, 185, 0.22) 18%) 100%
+);
+  /* charcoal linear gradient (subtle depth) */
+  --bg-surface-alt-grad: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg-surface-alt) 92%, #0b0e14 8%) 0%,
+    var(--bg-surface-alt) 38%,
+    color-mix(in srgb, var(--bg-surface-alt) 78%, #000 22%) 100%
+  );
+  /* “Plate” under content (site-main).
+     Middle of the gradient is always tinted by the CURRENT TEAM’S
+     --accent-primary-soft, so each team gets its own subtle wash. */
+  --site-main-bg: radial-gradient(
+                    circle at 0% 0%,
+                    rgba(255, 255, 255, 0.05) 0%,
+                    transparent 45%
+                  ),
+                  linear-gradient(
+                    180deg,
+                    rgba(0, 0, 0, 0.96) 0%,
+                    var(--accent-primary-soft) 52%,
+                    rgba(0, 0, 0, 0.98) 100%
+                  );
+
+  /* Card surfaces (threads, stats panels, posts, etc.) */
+  --card-bg:     rgba(15, 23, 42, 0.96);
+  --card-border: rgba(15, 23, 42, 0.96);
+
+  /* Subtle chips / tabs / pills */
+  --chip-bg:     rgba(15, 23, 42, 0.9);
+  --chip-border: rgba(148, 163, 184, 0.5);
+}
+body.theme-ncaa-all {
+  /* core neutrals */
+  --shark-deep:  #0b0f15;   /* near-black charcoal */
+  --shark-slate: #1a2230;   /* dark slate */
+  --shark-teal:  #0fbab2;   /* teal (used sparingly) */
+
+  /* keep orange/green from polluting league mode */
+  --shark-orange: #1a2230;
+  --shark-green:  #1a2230;
+
+  /* accents used by your header gradient */
+  --accent-primary:        #0b0f15;
+  --accent-primary-soft:   rgba(0, 190, 185, 0.06);
+  --accent-primary-border: rgba(160, 167, 178, 0.35);
+
+  --accent-secondary:      #121a26;              /* NOT light gray */
+  --accent-secondary-soft: rgba(0, 190, 185, 0.10);
+}
+body.theme-all,
+body[class*="ncaa-team-"] {
+  --page-header-hr: color-mix(in srgb, var(--shark-green) 90%, transparent 10%);
+  --page-card-bg: color-mix(in srgb, var(--shark-deep) 85%, black 15%);
+  --page-card-bg-hover: color-mix(in srgb, var(--shark-deep) 65%, var(--shark-slate) 35%);
+  --page-card-header-bg: color-mix(in srgb, var(--shark-green) 20%, transparent 80%);
+  --page-bg: radial-gradient(
+    circle at top,
+    color-mix(in srgb, var(--shark-teal) 80%, transparent 20%) 0%,
+    var(--shark-deep) 55%,
+    color-mix(in srgb, var(--accent-secondary-soft) 40%, transparent 60%) 100%
+  );
+}
+
+.rankings-table__row[class*="ncaa-team-"],
+.standings-table__row[class*="ncaa-team-"],
+.stats-table__row[class*="ncaa-team-"] {
+  --team-gradient: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--shark-teal) 26%, var(--shark-deep) 74%) 0%,
+    color-mix(in srgb, var(--shark-teal) 18%, var(--shark-deep) 82%) 35%,
+    /* orange comes in sooner + stronger */
+    color-mix(in srgb, var(--shark-orange) 22%, var(--shark-deep) 78%) 65%,
+    color-mix(in srgb, var(--shark-orange) 34%, var(--shark-deep) 66%) 100%
+  );
+}
+
+.rankings-table__row[class*="ncaa-team-"],
+.standings-table__row[class*="ncaa-team-"],
+.stats-table__row[class*="ncaa-team-"] {
+  --team-gradient: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--shark-teal) 26%, var(--shark-deep) 74%) 0%,
+    color-mix(in srgb, var(--shark-teal) 18%, var(--shark-deep) 82%) 35%,
+    /* orange comes in sooner + stronger */
+    color-mix(in srgb, var(--shark-orange) 22%, var(--shark-deep) 78%) 65%,
+    color-mix(in srgb, var(--shark-orange) 34%, var(--shark-deep) 66%) 100%
+  );
+}
+/* =====================================================
+   Air Force
+===================================================== */
+body.theme-team-air-force,
+.rankings-table__row.ncaa-team-air-force,
+.stats-table__row.ncaa-team-air-force,
+.thread-card.ncaa-team-air-force {
+  --shark-teal:   #003087;
+  --shark-orange: #a7a9ac;
+  --shark-green:  #7f7f7f;
+  --shark-deep:   #001c4a;
+  --shark-slate:  #d9d9d9;
+
+  --accent-primary:        #003087;
+  --accent-primary-soft:   rgba(0, 48, 135, 0.22);
+  --accent-primary-border: rgba(0, 48, 135, 0.9);
+
+  --accent-secondary:      #a7a9ac;
+  --accent-secondary-soft: rgba(167, 169, 172, 0.33);
+}
+
+/* =====================================================
+   Alaska Anchorage
+===================================================== */
+body.theme-team-alas-anchorage,
+.rankings-table__row.ncaa-team-alas-anchorage,
+.stats-table__row.ncaa-team-alas-anchorage,
+.thread-card.ncaa-team-alas-anchorage {
+  --shark-teal:   #005430;
+  --shark-orange: #ffb81c;
+  --shark-green:  #ffc845;
+  --shark-deep:   #00301c;
+  --shark-slate:  #e8e8e8;
+
+  --accent-primary:        #005430;
+  --accent-primary-soft:   rgba(0, 84, 48, 0.22);
+  --accent-primary-border: rgba(0, 84, 48, 0.9);
+
+  --accent-secondary:      #ffb81c;
+  --accent-secondary-soft: rgba(255, 184, 28, 0.55);
+}
+
+/* =====================================================
+   Alaska Fairbanks
+===================================================== */
+body.theme-team-alas-fairbanks,
+.rankings-table__row.ncaa-team-alas-fairbanks,
+.stats-table__row.ncaa-team-alas-fairbanks,
+.thread-card.ncaa-team-alas-fairbanks {
+  --shark-teal:   #003087;
+  --shark-orange: #ffb81c;
+  --shark-green:  #ffc845;
+  --shark-deep:   #00215a;
+  --shark-slate:  #e4e4e4;
+
+  --accent-primary:        #003087;
+  --accent-primary-soft:   rgba(0, 48, 135, 0.22);
+  --accent-primary-border: rgba(0, 48, 135, 0.9);
+
+  --accent-secondary:      #ffb81c;
+  --accent-secondary-soft: rgba(255, 184, 28, 0.55);
+}
+
+/* =====================================================
+   Arizona State
+===================================================== */
+body.theme-team-arizona-st,
+.rankings-table__row.ncaa-team-arizona-st,
+.stats-table__row.ncaa-team-arizona-st,
+.thread-card.ncaa-team-arizona-st {
+  --shark-teal:   #8c1d40;
+  --shark-orange: #ffc627;
+  --shark-green:  #f2a900;
+  --shark-deep:   #4a0f20;
+  --shark-slate:  #f6e7c7;
+
+  --accent-primary:        #8c1d40;
+  --accent-primary-soft:   rgba(140, 29, 64, 0.22);
+  --accent-primary-border: rgba(140, 29, 64, 0.9);
+
+  --accent-secondary:      #ffc627;
+  --accent-secondary-soft: rgba(255, 198, 39, 0.55);
+}
+
+/* =====================================================
+   Army
+===================================================== */
+body.theme-team-army,
+.rankings-table__row.ncaa-team-army,
+.stats-table__row.ncaa-team-army,
+.thread-card.ncaa-team-army {
+  --shark-teal:   #000000;
+  --shark-orange: #c5b783;
+  --shark-green:  #b89f5d;
+  --shark-deep:   #111111;
+  --shark-slate:  #e0d7bf;
+
+  --accent-primary:        #000000;
+  --accent-primary-soft:   rgba(0, 0, 0, 0.33);
+  --accent-primary-border: rgba(0, 0, 0, 0.9);
+
+  --accent-secondary:      #c5b783;
+  --accent-secondary-soft: rgba(197, 183, 131, 0.55);
+}
+
+/* =====================================================
+   Assumption
+===================================================== */
+body.theme-team-assumption,
+.rankings-table__row.ncaa-team-assumption,
+.stats-table__row.ncaa-team-assumption,
+.thread-card.ncaa-team-assumption {
+  --shark-teal:   #0033a0;
+  --shark-orange: #cfd4e0;
+  --shark-green:  #8797b5;
+  --shark-deep:   #001d5c;
+  --shark-slate:  #e9ecf3;
+
+  --accent-primary:        #0033a0;
+  --accent-primary-soft:   rgba(0, 51, 160, 0.22);
+  --accent-primary-border: rgba(0, 51, 160, 0.9);
+
+  --accent-secondary:      #cfd4e0;
+  --accent-secondary-soft: rgba(207, 212, 224, 0.42);
+}
+
+/* =====================================================
+   Augustana (SD)
+===================================================== */
+body.theme-team-augustana-sd,
+.rankings-table__row.ncaa-team-augustana-sd,
+.stats-table__row.ncaa-team-augustana-sd,
+.thread-card.ncaa-team-augustana-sd {
+  --shark-teal:   #002f6c;
+  --shark-orange: #ffc72c;
+  --shark-green:  #ffdb70;
+  --shark-deep:   #001c40;
+  --shark-slate:  #dedede;
+
+  --accent-primary:        #002f6c;
+  --accent-primary-soft:   rgba(0, 47, 108, 0.22);
+  --accent-primary-border: rgba(0, 47, 108, 0.9);
+
+  --accent-secondary:      #ffc72c;
+  --accent-secondary-soft: rgba(255, 199, 44, 0.55);
+}
+
+/* =====================================================
+   Bemidji State
+===================================================== */
+body.theme-team-bemidji-st,
+.rankings-table__row.ncaa-team-bemidji-st,
+.stats-table__row.ncaa-team-bemidji-st,
+.thread-card.ncaa-team-bemidji-st {
+  --shark-teal:   #0a5043;
+  --shark-orange: #c5b783;
+  --shark-green:  #6e7f75;
+  --shark-deep:   #00221c;
+  --shark-slate:  #e7e7e7;
+
+  --accent-primary:        #0a5043;
+  --accent-primary-soft:   rgba(10, 80, 67, 0.22);
+  --accent-primary-border: rgba(10, 80, 67, 0.9);
+
+  --accent-secondary:      #c5b783;
+  --accent-secondary-soft: rgba(197, 183, 131, 0.55);
+}
+
+/* =====================================================
+   Bentley
+===================================================== */
+body.theme-team-bentley,
+.rankings-table__row.ncaa-team-bentley,
+.stats-table__row.ncaa-team-bentley,
+.thread-card.ncaa-team-bentley {
+  --shark-teal:   #0033a0;
+  --shark-orange: #a7a9ac;
+  --shark-green:  #7f7f7f;
+  --shark-deep:   #001d5c;
+  --shark-slate:  #ececec;
+
+  --accent-primary:        #0033a0;
+  --accent-primary-soft:   rgba(0, 51, 160, 0.22);
+  --accent-primary-border: rgba(0, 51, 160, 0.9);
+
+  --accent-secondary:      #a7a9ac;
+  --accent-secondary-soft: rgba(167, 169, 172, 0.42);
+}
+/* =====================================================
+   Bentley
+===================================================== */
+body.theme-team-penn-st,
+.rankings-table__row.ncaa-team-penn-st,
+.stats-table__row.ncaa-team-penn-st,
+.thread-card.ncaa-team-penn-st {
+  --shark-teal:   rgba(0, 51, 160,.05);
+  --shark-orange: #a7a9ac;
+  --shark-green:  #7f7f7f;
+  --shark-deep:   #001d5c;
+  --shark-slate:  #ececec;
+
+  --accent-primary:        rgba(0, 51, 160, 0.22);
+  --accent-primary-soft:   rgba(0, 51, 160, 0.22);
+  --accent-primary-border: rgba(0, 51, 160, 0.9);
+
+  --accent-secondary:      #a7a9ac;
+  --accent-secondary-soft: rgba(167, 169, 172, 0.42);
+}
+/* =====================================================
+   Boston College
+===================================================== */
+body.theme-team-boston-college,
+.rankings-table__row.ncaa-team-boston-college,
+.stats-table__row.ncaa-team-boston-college,
+.thread-card.ncaa-team-boston-college {
+  --shark-teal:   #98002e;
+  --shark-orange: #b7a57a;
+  --shark-green:  #d9cba4;
+  --shark-deep:   #4e0018;
+  --shark-slate:  #f1eada;
+
+  --accent-primary:        #98002e;
+  --accent-primary-soft:   rgba(152, 0, 46, 0.22);
+  --accent-primary-border: rgba(152, 0, 46, 0.9);
+
+  --accent-secondary:      #b7a57a;
+  --accent-secondary-soft: rgba(183, 165, 122, 0.55);
+}
+/* =====================================================
+   Boston University
+===================================================== */
+body.theme-team-boston-u,
+.rankings-table__row.ncaa-team-boston-u,
+.stats-table__row.ncaa-team-boston-u,
+.thread-card.ncaa-team-boston-u {
+  --shark-teal:   #cc0000;
+  --shark-orange: #ffffff;
+  --shark-green:  #e6e6e6;
+  --shark-deep:   #6a0000;
+  --shark-slate:  #f5f5f5;
+
+  --accent-primary:        #cc0000;
+  --accent-primary-soft:   rgba(204, 0, 0, 0.22);
+  --accent-primary-border: rgba(204, 0, 0, 0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255, 255, 255, 0.55);
+}
+
+/* =====================================================
+   Bowling Green
+===================================================== */
+body.theme-team-bowling-green,
+.rankings-table__row.ncaa-team-bowling-green,
+.stats-table__row.ncaa-team-bowling-green,
+.thread-card.ncaa-team-bowling-green {
+  --shark-teal:   #4f2c1d;
+  --shark-orange: #f15a22;
+  --shark-green:  #ffaa7f;
+  --shark-deep:   #2a160d;
+  --shark-slate:  #e8ddcf;
+
+  --accent-primary:        #4f2c1d;
+  --accent-primary-soft:   rgba(79, 44, 29, 0.22);
+  --accent-primary-border: rgba(79, 44, 29, 0.9);
+
+  --accent-secondary:      #f15a22;
+  --accent-secondary-soft: rgba(241, 90, 34, 0.55);
+}
+
+/* =====================================================
+   Brown
+===================================================== */
+body.theme-team-brown,
+.rankings-table__row.ncaa-team-brown,
+.stats-table__row.ncaa-team-brown,
+.thread-card.ncaa-team-brown {
+  --shark-teal:   #4e3629;
+  --shark-orange: #ffffff;
+  --shark-green:  #c4b7a6;
+  --shark-deep:   #2a1e17;
+  --shark-slate:  #f8f5f2;
+
+  --accent-primary:        #4e3629;
+  --accent-primary-soft:   rgba(78, 54, 41, 0.22);
+  --accent-primary-border: rgba(78, 54, 41, 0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Canisius
+===================================================== */
+body.theme-team-canisius,
+.rankings-table__row.ncaa-team-canisius,
+.stats-table__row.ncaa-team-canisius,
+.thread-card.ncaa-team-canisius {
+  --shark-teal:   #002f6c;
+  --shark-orange: #ffc72c;
+  --shark-green:  #ffdb70;
+  --shark-deep:   #001a3e;
+  --shark-slate:  #e8e8e8;
+
+  --accent-primary:        #002f6c;
+  --accent-primary-soft:   rgba(0, 47, 108, 0.22);
+  --accent-primary-border: rgba(0, 47, 108, 0.9);
+
+  --accent-secondary:      #ffc72c;
+  --accent-secondary-soft: rgba(255, 199, 44, 0.55);
+}
+
+/* =====================================================
+   Clarkson
+===================================================== */
+body.theme-team-clarkson,
+.rankings-table__row.ncaa-team-clarkson,
+.stats-table__row.ncaa-team-clarkson,
+.thread-card.ncaa-team-clarkson {
+  --shark-teal:   #0b5b3a;
+  --shark-orange: #ffc72c;
+  --shark-green:  #ffdb70;
+  --shark-deep:   #053021;
+  --shark-slate:  #e5e5e5;
+
+  --accent-primary:        #0b5b3a;
+  --accent-primary-soft:   rgba(11, 91, 58, 0.22);
+  --accent-primary-border: rgba(11, 91, 58, 0.9);
+
+  --accent-secondary:      #ffc72c;
+  --accent-secondary-soft: rgba(255, 199, 44, 0.55);
+}
+
+/* =====================================================
+   Colgate
+===================================================== */
+body.theme-team-colgate,
+.rankings-table__row.ncaa-team-colgate,
+.stats-table__row.ncaa-team-colgate,
+.thread-card.ncaa-team-colgate {
+  --shark-teal:   #861f41;
+  --shark-orange: #ffffff;
+  --shark-green:  #e6d7dc;
+  --shark-deep:   #4a1124;
+  --shark-slate:  #f7f3f4;
+
+  --accent-primary:        #861f41;
+  --accent-primary-soft:   rgba(134, 31, 65, 0.22);
+  --accent-primary-border: rgba(134, 31, 65, 0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Colorado College
+===================================================== */
+body.theme-team-colorado-col,
+.rankings-table__row.ncaa-team-colorado-col,
+.stats-table__row.ncaa-team-colorado-col,
+.thread-card.ncaa-team-colorado-col {
+  --shark-teal:   #000000;
+  --shark-orange: #f1b434;
+  --shark-green:  #d19e2d;
+  --shark-deep:   #111111;
+  --shark-slate:  #f2e6c9;
+
+  --accent-primary:        #000000;
+  --accent-primary-soft:   rgba(0,0,0,0.33);
+  --accent-primary-border: rgba(0,0,0,0.9);
+
+  --accent-secondary:      #f1b434;
+  --accent-secondary-soft: rgba(241, 180, 52, 0.55);
+}
+
+/* =====================================================
+   Cornell
+===================================================== */
+body.theme-team-cornell,
+.rankings-table__row.ncaa-team-cornell,
+.stats-table__row.ncaa-team-cornell,
+.thread-card.ncaa-team-cornell {
+  --shark-teal:   #6a0f0f;
+  --shark-orange: #b31b1b;
+  --shark-green:  #eecaca;
+  --shark-deep:   #6a0f0f;
+  --shark-slate:  #f8eeee;
+  --border-subtle:#f8eeee;
+  --accent-primary:        rgba(179, 27, 27, 0.22);
+  --accent-primary-soft:   rgba(179, 27, 27, 0.22);
+  --accent-primary-border: #f8eeee;
+
+  --accent-secondary:      #b31b1b;
+  --accent-secondary-soft: rgba(255,255,255,0.25);
+}
+
+/* =====================================================
+   Dartmouth
+===================================================== */
+body.theme-team-dartmouth,
+.rankings-table__row.ncaa-team-dartmouth,
+.stats-table__row.ncaa-team-dartmouth,
+.thread-card.ncaa-team-dartmouth {
+  --shark-teal:   #00693e;
+  --shark-orange: #ffffff;
+  --shark-green:  #cce8da;
+  --shark-deep:   #003a21;
+  --shark-slate:  #e8f4ef;
+
+  --accent-primary:        #00693e;
+  --accent-primary-soft:   rgba(0,105,62,0.22);
+  --accent-primary-border: rgba(0,105,62,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Denver
+===================================================== */
+body.theme-team-denver,
+.rankings-table__row.ncaa-team-denver,
+.stats-table__row.ncaa-team-denver,
+.thread-card.ncaa-team-denver {
+  --shark-teal:   #8b2332;
+  --shark-orange: #c5b783;
+  --shark-green:  #d9cba4;
+  --shark-deep:   #4b131b;
+  --shark-slate:  #f6f1e5;
+
+  --accent-primary:        #8b2332;
+  --accent-primary-soft:   rgba(139, 35, 50, 0.22);
+  --accent-primary-border: rgba(139, 35, 50, 0.9);
+
+  --accent-secondary:      #c5b783;
+  --accent-secondary-soft: rgba(197, 183, 131, 0.55);
+}
+
+/* =====================================================
+   Ferris State
+===================================================== */
+body.theme-team-ferris-st,
+.rankings-table__row.ncaa-team-ferris-st,
+.stats-table__row.ncaa-team-ferris-st,
+.thread-card.ncaa-team-ferris-st {
+  --shark-teal:   #c8102e;
+  --shark-orange: #f1be48;
+  --shark-green:  #ffe08f;
+  --shark-deep:   #7a0016;
+  --shark-slate:  #f7e3b6;
+
+  --accent-primary:        #c8102e;
+  --accent-primary-soft:   rgba(200, 16, 46, 0.22);
+  --accent-primary-border: rgba(200, 16, 46, 0.9);
+
+  --accent-secondary:      #f1be48;
+  --accent-secondary-soft: rgba(241, 190, 72, 0.55);
+}
+
+/* =====================================================
+   Harvard
+===================================================== */
+body.theme-team-harvard,
+.rankings-table__row.ncaa-team-harvard,
+.stats-table__row.ncaa-team-harvard,
+.thread-card.ncaa-team-harvard {
+  --shark-teal:   #a51c30;
+  --shark-orange: #ffffff;
+  --shark-green:  #eed5d9;
+  --shark-deep:   #5c0f1a;
+  --shark-slate:  #f7eef0;
+
+  --accent-primary:        #a51c30;
+  --accent-primary-soft:   rgba(165, 28, 48, 0.22);
+  --accent-primary-border: rgba(165, 28, 48, 0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+/* =====================================================
+   Holy Cross
+===================================================== */
+body.theme-team-holy-cross,
+.rankings-table__row.ncaa-team-holy-cross,
+.stats-table__row.ncaa-team-holy-cross,
+.thread-card.ncaa-team-holy-cross {
+  --shark-teal:   #492f92;
+  --shark-orange: #ffffff;
+  --shark-green:  #dad4ec;
+  --shark-deep:   #2a1a59;
+  --shark-slate:  #f5f2fb;
+
+  --accent-primary:        #492f92;
+  --accent-primary-soft:   rgba(73, 47, 146, 0.22);
+  --accent-primary-border: rgba(73, 47, 146, 0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Lake Superior State
+===================================================== */
+body.theme-team-lake-superior-st,
+.rankings-table__row.ncaa-team-lake-superior-st,
+.stats-table__row.ncaa-team-lake-superior-st,
+.thread-card.ncaa-team-lake-superior-st {
+  --shark-teal:   #003da5;
+  --shark-orange: #ffb81c;
+  --shark-green:  #ffd676;
+  --shark-deep:   #002257;
+  --shark-slate:  #e4eaf6;
+
+  --accent-primary:        #003da5;
+  --accent-primary-soft:   rgba(0, 61, 165, 0.22);
+  --accent-primary-border: rgba(0, 61, 165, 0.9);
+
+  --accent-secondary:      #ffb81c;
+  --accent-secondary-soft: rgba(255, 184, 28, 0.55);
+}
+
+/* =====================================================
+   Lindenwood
+===================================================== */
+body.theme-team-lindenwood-mo,
+.rankings-table__row.ncaa-team-lindenwood-mo,
+.stats-table__row.ncaa-team-lindenwood-mo,
+.thread-card.ncaa-team-lindenwood-mo {
+  --shark-teal:   #000000;
+  --shark-orange: #b9975b;
+  --shark-green:  #dbc9a4;
+  --shark-deep:   #1a1a1a;
+  --shark-slate:  #f4ecd8;
+
+  --accent-primary:        #000000;
+  --accent-primary-soft:   rgba(0,0,0,0.33);
+  --accent-primary-border: rgba(0,0,0,0.9);
+
+  --accent-secondary:      #b9975b;
+  --accent-secondary-soft: rgba(185, 151, 91, 0.55);
+}
+
+/* =====================================================
+   Maine
+===================================================== */
+body.theme-team-maine,
+.rankings-table__row.ncaa-team-maine,
+.stats-table__row.ncaa-team-maine,
+.thread-card.ncaa-team-maine {
+  --shark-teal:   #1a2732;
+  --shark-orange: #7ba4c8;
+  --shark-green:  #a9c4db;
+  --shark-deep:   #0f171f;
+  --shark-slate:  #dce8f3;
+
+  --accent-primary:        #1a2732;
+  --accent-primary-soft:   rgba(26, 39, 50, 0.22);
+  --accent-primary-border: rgba(26, 39, 50, 0.9);
+
+  --accent-secondary:      #7ba4c8;
+  --accent-secondary-soft: rgba(123,164,200,0.55);
+}
+
+/* =====================================================
+   UMass (Massachusetts)
+===================================================== */
+body.theme-team-massachusetts,
+.rankings-table__row.ncaa-team-massachusetts,
+.stats-table__row.ncaa-team-massachusetts,
+.thread-card.ncaa-team-massachusetts {
+  --shark-teal:   #881c1c;
+  --shark-orange: #ffffff;
+  --shark-green:  #e6caca;
+  --shark-deep:   #4c0f0f;
+  --shark-slate:  #f8eeee;
+
+  --accent-primary:        #881c1c;
+  --accent-primary-soft:   rgba(136, 28, 28, 0.22);
+  --accent-primary-border: rgba(136, 28, 28, 0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Mercyhurst
+===================================================== */
+body.theme-team-mercyhurst,
+.rankings-table__row.ncaa-team-mercyhurst,
+.stats-table__row.ncaa-team-mercyhurst,
+.thread-card.ncaa-team-mercyhurst {
+  --shark-teal:   #0a5c4a;
+  --shark-orange: #c5d5df;
+  --shark-green:  #d7e6ee;
+  --shark-deep:   #063a2f;
+  --shark-slate:  #eaf2f5;
+
+  --accent-primary:        #0a5c4a;
+  --accent-primary-soft:   rgba(10,92,74,0.22);
+  --accent-primary-border: rgba(10,92,74,0.9);
+
+  --accent-secondary:      #c5d5df;
+  --accent-secondary-soft: rgba(197,213,223,0.55);
+}
+
+/* =====================================================
+   Merrimack
+===================================================== */
+body.theme-team-merrimack,
+.rankings-table__row.ncaa-team-merrimack,
+.stats-table__row.ncaa-team-merrimack,
+.thread-card.ncaa-team-merrimack {
+  --shark-teal:   #003f87;
+  --shark-orange: #ffd100;
+  --shark-green:  #ffe680;
+  --shark-deep:   #00214a;
+  --shark-slate:  #f3ebc9;
+
+  --accent-primary:        #003f87;
+  --accent-primary-soft:   rgba(0,63,135,0.22);
+  --accent-primary-border: rgba(0,63,135,0.9);
+
+  --accent-secondary:      #ffd100;
+  --accent-secondary-soft: rgba(255,209,0,0.55);
+}
+
+/* =====================================================
+   Miami (OH)
+===================================================== */
+body.theme-team-miami-oh,
+.rankings-table__row.ncaa-team-miami-oh,
+.stats-table__row.ncaa-team-miami-oh,
+.thread-card.ncaa-team-miami-oh {
+  --shark-teal:   #b41e3a;
+  --shark-orange: #ffffff;
+  --shark-green:  #e6c7ce;
+  --shark-deep:   #6a1222;
+  --shark-slate:  #f8ecef;
+
+  --accent-primary:        #b41e3a;
+  --accent-primary-soft:   rgba(180,30,58,0.22);
+  --accent-primary-border: rgba(180,30,58,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Michigan
+===================================================== */
+body.theme-team-michigan,
+.rankings-table__row.ncaa-team-michigan,
+.stats-table__row.ncaa-team-michigan,
+.thread-card.ncaa-team-michigan {
+  --shark-teal:   #00274c;
+  --shark-orange: #ffcb05;
+  --shark-green:  #ffe57e;
+  --shark-deep:   #00162a;
+  --shark-slate:  #e3e7ea;
+
+  --accent-primary:        #00274c;
+  --accent-primary-soft:   rgba(0,39,76,0.22);
+  --accent-primary-border: rgba(0,39,76,0.9);
+
+  --accent-secondary:      #ffcb05;
+  --accent-secondary-soft: rgba(255,203,5,0.55);
+}
+
+/* =====================================================
+   Michigan State
+===================================================== */
+body.theme-team-michigan-st,
+.rankings-table__row.ncaa-team-michigan-st,
+.stats-table__row.ncaa-team-michigan-st,
+.thread-card.ncaa-team-michigan-st {
+  --shark-teal:   #18453b;
+  --shark-orange: #ffffff;
+  --shark-green:  #c8dcd6;
+  --shark-deep:   #0f2a24;
+  --shark-slate:  #f5f9f8;
+
+  --accent-primary:        #18453b;
+  --accent-primary-soft:   rgba(24,69,59,0.22);
+  --accent-primary-border: rgba(24,69,59,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+/* =====================================================
+   Michigan Tech
+===================================================== */
+body.theme-team-michigan-tech,
+.rankings-table__row.ncaa-team-michigan-tech,
+.stats-table__row.ncaa-team-michigan-tech,
+.thread-card.ncaa-team-michigan-tech {
+  --shark-teal:   #000000;
+  --shark-orange: #ffce00;
+  --shark-green:  #ffe980;
+  --shark-deep:   #1a1a1a;
+  --shark-slate:  #f5efcc;
+
+  --accent-primary:        #000000;
+  --accent-primary-soft:   rgba(0,0,0,0.33);
+  --accent-primary-border: rgba(0,0,0,0.9);
+
+  --accent-secondary:      #ffce00;
+  --accent-secondary-soft: rgba(255,206,0,0.55);
+}
+
+/* =====================================================
+   Minnesota
+===================================================== */
+body.theme-team-minnesota,
+.rankings-table__row.ncaa-team-minnesota,
+.stats-table__row.ncaa-team-minnesota,
+.thread-card.ncaa-team-minnesota {
+  --shark-teal:   #7a0019;
+  --shark-orange: #ffcc33;
+  --shark-green:  #ffe57f;
+  --shark-deep:   #4c0010;
+  --shark-slate:  #f8e9c7;
+
+  --accent-primary:        #7a0019;
+  --accent-primary-soft:   rgba(122,0,25,0.22);
+  --accent-primary-border: rgba(122,0,25,0.9);
+
+  --accent-secondary:      #ffcc33;
+  --accent-secondary-soft: rgba(255,204,51,0.55);
+}
+
+/* =====================================================
+   Minnesota Duluth
+===================================================== */
+body.theme-team-minn-duluth,
+.rankings-table__row.ncaa-team-minn-duluth,
+.stats-table__row.ncaa-team-minn-duluth,
+.thread-card.ncaa-team-minn-duluth {
+  --shark-teal:   #862633;
+  --shark-orange: #f1b82d;
+  --shark-green:  #ffe8a3;
+  --shark-deep:   #571720;
+  --shark-slate:  #f4e6cf;
+
+  --accent-primary:        #862633;
+  --accent-primary-soft:   rgba(134,38,51,0.22);
+  --accent-primary-border: rgba(134,38,51,0.9);
+
+  --accent-secondary:      #f1b82d;
+  --accent-secondary-soft: rgba(241,184,45,0.55);
+}
+
+/* =====================================================
+   Minnesota State (Mankato)
+===================================================== */
+body.theme-team-minn-st-mankato,
+.rankings-table__row.ncaa-team-minn-st-mankato,
+.stats-table__row.ncaa-team-minn-st-mankato,
+.thread-card.ncaa-team-minn-st-mankato {
+  --shark-teal:   #492f92;
+  --shark-orange: #ffcc33;
+  --shark-green:  #ffe57f;
+  --shark-deep:   #2d1c59;
+  --shark-slate:  #f0e5f9;
+
+  --accent-primary:        #492f92;
+  --accent-primary-soft:   rgba(73,47,146,0.22);
+  --accent-primary-border: rgba(73,47,146,0.9);
+
+  --accent-secondary:      #ffcc33;
+  --accent-secondary-soft: rgba(255,204,51,0.55);
+}
+
+/* =====================================================
+   Minn. State Moorhead
+===================================================== */
+body.theme-team-minn-st-moorhead,
+.rankings-table__row.ncaa-team-minn-st-moorhead,
+.stats-table__row.ncaa-team-minn-st-moorhead,
+.thread-card.ncaa-team-minn-st-moorhead {
+  --shark-teal:   #c41e3a;
+  --shark-orange: #000000;
+  --shark-green:  #e6c7cd;
+  --shark-deep:   #6e111f;
+  --shark-slate:  #f7edef;
+
+  --accent-primary:        #c41e3a;
+  --accent-primary-soft:   rgba(196,30,58,0.22);
+  --accent-primary-border: rgba(196,30,58,0.9);
+
+  --accent-secondary:      #000000;
+  --accent-secondary-soft: rgba(0,0,0,0.55);
+}
+
+/* =====================================================
+   Nebraska Omaha
+===================================================== */
+body.theme-team-neb-omaha,
+.rankings-table__row.ncaa-team-neb-omaha,
+.stats-table__row.ncaa-team-neb-omaha,
+.thread-card.ncaa-team-neb-omaha {
+  --shark-teal:   #000000;
+  --shark-orange: #c8102e;
+  --shark-green:  #f5bec7;
+  --shark-deep:   #1a1a1a;
+  --shark-slate:  #f8e9ec;
+
+  --accent-primary:        #000000;
+  --accent-primary-soft:   rgba(0,0,0,0.33);
+  --accent-primary-border: rgba(0,0,0,0.9);
+
+  --accent-secondary:      #c8102e;
+  --accent-secondary-soft: rgba(200,16,46,0.55);
+}
+
+/* =====================================================
+   New Hampshire
+===================================================== */
+body.theme-team-new-hampshire,
+.rankings-table__row.ncaa-team-new-hampshire,
+.stats-table__row.ncaa-team-new-hampshire,
+.thread-card.ncaa-team-new-hampshire {
+  --shark-teal:   #003282;
+  --shark-orange: #c2d1e0;
+  --shark-green:  #dfe8f0;
+  --shark-deep:   #001a47;
+  --shark-slate:  #eef4fa;
+
+  --accent-primary:        #003282;
+  --accent-primary-soft:   rgba(0,50,130,0.22);
+  --accent-primary-border: rgba(0,50,130,0.9);
+
+  --accent-secondary:      #c2d1e0;
+  --accent-secondary-soft: rgba(194,209,224,0.55);
+}
+
+/* =====================================================
+   Niagara
+===================================================== */
+body.theme-team-niagara,
+.rankings-table__row.ncaa-team-niagara,
+.stats-table__row.ncaa-team-niagara,
+.thread-card.ncaa-team-niagara {
+  --shark-teal:   #582c83;
+  --shark-orange: #ffffff;
+  --shark-green:  #e5dff0;
+  --shark-deep:   #34194e;
+  --shark-slate:  #f8f5fb;
+
+  --accent-primary:        #582c83;
+  --accent-primary-soft:   rgba(88,44,131,0.22);
+  --accent-primary-border: rgba(88,44,131,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   North Dakota
+===================================================== */
+body.theme-team-north-dakota,
+.rankings-table__row.ncaa-team-north-dakota,
+.stats-table__row.ncaa-team-north-dakota,
+.thread-card.ncaa-team-north-dakota {
+  --shark-teal:   #009a44;
+  --shark-orange: #ffffff;
+  --shark-green:  #ccebd8;
+  --shark-deep:   #005425;
+  --shark-slate:  #eff8f3;
+
+  --accent-primary:        #009a44;
+  --accent-primary-soft:   rgba(0,154,68,0.22);
+  --accent-primary-border: rgba(0,154,68,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Northeastern
+===================================================== */
+body.theme-team-northeastern,
+.rankings-table__row.ncaa-team-northeastern,
+.stats-table__row.ncaa-team-northeastern,
+.thread-card.ncaa-team-northeastern {
+  --shark-teal:   #000000;
+  --shark-orange: #e4002b;
+  --shark-green:  #f5c4cd;
+  --shark-deep:   #1a1a1a;
+  --shark-slate:  #f8e8ea;
+
+  --accent-primary:        #000000;
+  --accent-primary-soft:   rgba(0,0,0,0.33);
+  --accent-primary-border: rgba(0,0,0,0.9);
+
+  --accent-secondary:      #e4002b;
+  --accent-secondary-soft: rgba(228,0,43,0.55);
+}
+
+/* =====================================================
+   Northern Michigan
+===================================================== */
+body.theme-team-northern-mich,
+.rankings-table__row.ncaa-team-northern-mich,
+.stats-table__row.ncaa-team-northern-mich,
+.thread-card.ncaa-team-northern-mich {
+  --shark-teal:   #006a4d;
+  --shark-orange: #f0b323;
+  --shark-green:  #ffe59c;
+  --shark-deep:   #003d2c;
+  --shark-slate:  #f2f5e7;
+
+  --accent-primary:        #006a4d;
+  --accent-primary-soft:   rgba(0,106,77,0.22);
+  --accent-primary-border: rgba(0,106,77,0.9);
+
+  --accent-secondary:      #f0b323;
+  --accent-secondary-soft: rgba(240,179,35,0.55);
+}
+/* =====================================================
+   Notre Dame
+===================================================== */
+body.theme-team-notre-dame,
+.rankings-table__row.ncaa-team-notre-dame,
+.stats-table__row.ncaa-team-notre-dame,
+.thread-card.ncaa-team-notre-dame {
+  --shark-teal:   #0c2340;
+  --shark-orange: #ae9142;
+  --shark-green:  #e9ddbf;
+  --shark-deep:   #081629;
+  --shark-slate:  #f5f1e6;
+
+  --accent-primary:        #0c2340;
+  --accent-primary-soft:   rgba(12,35,64,0.22);
+  --accent-primary-border: rgba(12,35,64,0.9);
+
+  --accent-secondary:      #ae9142;
+  --accent-secondary-soft: rgba(174,145,66,0.55);
+}
+
+/* =====================================================
+   Ohio State
+===================================================== */
+body.theme-team-ohio-st,
+.rankings-table__row.ncaa-team-ohio-st,
+.stats-table__row.ncaa-team-ohio-st,
+.thread-card.ncaa-team-ohio-st {
+  --shark-teal:   #bb0000;
+  --shark-orange: #ffffff;
+  --shark-green:  #f0c7c7;
+  --shark-deep:   #6a0000;
+  --shark-slate:  #fbefef;
+
+  --accent-primary:        #bb0000;
+  --accent-primary-soft:   rgba(187,0,0,0.22);
+  --accent-primary-border: rgba(187,0,0,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Princeton
+===================================================== */
+body.theme-team-princeton,
+.rankings-table__row.ncaa-team-princeton,
+.stats-table__row.ncaa-team-princeton,
+.thread-card.ncaa-team-princeton {
+  --shark-teal:   #ff8f00;
+  --shark-orange: #000000;
+  --shark-green:  #ffe6bf;
+  --shark-deep:   #603d00;
+  --shark-slate:  #fff2df;
+
+  --accent-primary:        #ff8f00;
+  --accent-primary-soft:   rgba(255,143,0,0.22);
+  --accent-primary-border: rgba(255,143,0,0.9);
+
+  --accent-secondary:      #000000;
+  --accent-secondary-soft: rgba(0,0,0,0.55);
+}
+
+/* =====================================================
+   Providence
+===================================================== */
+body.theme-team-providence,
+.rankings-table__row.ncaa-team-providence,
+.stats-table__row.ncaa-team-providence,
+.thread-card.ncaa-team-providence {
+  --shark-teal:   #000000;
+  --shark-orange: #cfcfcf;
+  --shark-green:  #e8e8e8;
+  --shark-deep:   #1a1a1a;
+  --shark-slate:  #f6f6f6;
+
+  --accent-primary:        #000000;
+  --accent-primary-soft:   rgba(0,0,0,0.33);
+  --accent-primary-border: rgba(0,0,0,0.9);
+
+  --accent-secondary:      #cfcfcf;
+  --accent-secondary-soft: rgba(207,207,207,0.55);
+}
+
+/* =====================================================
+   Quinnipiac
+===================================================== */
+body.theme-team-quinnipiac,
+.rankings-table__row.ncaa-team-quinnipiac,
+.stats-table__row.ncaa-team-quinnipiac,
+.thread-card.ncaa-team-quinnipiac {
+  --shark-teal:   #002f6c;
+  --shark-orange: #ffcc00;
+  --shark-green:  #ffe88c;
+  --shark-deep:   #001a39;
+  --shark-slate:  #f0f4ff;
+
+  --accent-primary:        #002f6c;
+  --accent-primary-soft:   rgba(0,47,108,0.22);
+  --accent-primary-border: rgba(0,47,108,0.9);
+
+  --accent-secondary:      #ffcc00;
+  --accent-secondary-soft: rgba(255,204,0,0.55);
+}
+
+/* =====================================================
+   Rensselaer (RPI)
+===================================================== */
+body.theme-team-rensselaer,
+.rankings-table__row.ncaa-team-rensselaer,
+.stats-table__row.ncaa-team-rensselaer,
+.thread-card.ncaa-team-rensselaer {
+  --shark-teal:   #d6001c;
+  --shark-orange: #ffffff;
+  --shark-green:  #f7cdd2;
+  --shark-deep:   #7b0010;
+  --shark-slate:  #fceff0;
+
+  --accent-primary:        #d6001c;
+  --accent-primary-soft:   rgba(214,0,28,0.22);
+  --accent-primary-border: rgba(214,0,28,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Robert Morris
+===================================================== */
+body.theme-team-robert-morris,
+.rankings-table__row.ncaa-team-robert-morris,
+.stats-table__row.ncaa-team-robert-morris,
+.thread-card.ncaa-team-robert-morris {
+  --shark-teal:   #041e42;
+  --shark-orange: #be0f34;
+  --shark-green:  #e8c3cb;
+  --shark-deep:   #021126;
+  --shark-slate:  #f3f5fb;
+
+  --accent-primary:        #041e42;
+  --accent-primary-soft:   rgba(4,30,66,0.22);
+  --accent-primary-border: rgba(4,30,66,0.9);
+
+  --accent-secondary:      #be0f34;
+  --accent-secondary-soft: rgba(190,15,52,0.55);
+}
+
+/* =====================================================
+   Rochester Institute of Technology (RIT)
+===================================================== */
+body.theme-team-rochester-inst,
+.rankings-table__row.ncaa-team-rochester-inst,
+.stats-table__row.ncaa-team-rochester-inst,
+.thread-card.ncaa-team-rochester-inst {
+  --shark-teal:   #f76900;
+  --shark-orange: #000000;
+  --shark-green:  #ffe5cc;
+  --shark-deep:   #8f3f00;
+  --shark-slate:  #fff1e6;
+
+  --accent-primary:        #f76900;
+  --accent-primary-soft:   rgba(247,105,0,0.22);
+  --accent-primary-border: rgba(247,105,0,0.9);
+
+  --accent-secondary:      #000000;
+  --accent-secondary-soft: rgba(0,0,0,0.55);
+}
+
+/* =====================================================
+   Sacred Heart
+===================================================== */
+body.theme-team-sacred-heart,
+.rankings-table__row.ncaa-team-sacred-heart,
+.stats-table__row.ncaa-team-sacred-heart,
+.thread-card.ncaa-team-sacred-heart {
+  --shark-teal:   #c8102e;
+  --shark-orange: #ffffff;
+  --shark-green:  #f7ccd5;
+  --shark-deep:   #76091d;
+  --shark-slate:  #fceef1;
+
+  --accent-primary:        #c8102e;
+  --accent-primary-soft:   rgba(200,16,46,0.22);
+  --accent-primary-border: rgba(200,16,46,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Stonehill
+===================================================== */
+body.theme-team-stonehill,
+.rankings-table__row.ncaa-team-stonehill,
+.stats-table__row.ncaa-team-stonehill,
+.thread-card.ncaa-team-stonehill {
+  --shark-teal:   #532e8c;
+  --shark-orange: #ffffff;
+  --shark-green:  #e9def7;
+  --shark-deep:   #2f1a4d;
+  --shark-slate:  #f7f2ff;
+
+  --accent-primary:        #532e8c;
+  --accent-primary-soft:   rgba(83,46,140,0.22);
+  --accent-primary-border: rgba(83,46,140,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   St. Thomas (MN)
+===================================================== */
+body.theme-team-st-thomas-mn,
+.rankings-table__row.ncaa-team-st-thomas-mn,
+.stats-table__row.ncaa-team-st-thomas-mn,
+.thread-card.ncaa-team-st-thomas-mn {
+  --shark-teal:   #582c83;
+  --shark-orange: #ffffff;
+  --shark-green:  #e9def7;
+  --shark-deep:   #341a4c;
+  --shark-slate:  #f7f2ff;
+
+  --accent-primary:        #582c83;
+  --accent-primary-soft:   rgba(88,44,131,0.22);
+  --accent-primary-border: rgba(88,44,131,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   St. Lawrence
+===================================================== */
+body.theme-team-st-lawrence,
+.rankings-table__row.ncaa-team-st-lawrence,
+.stats-table__row.ncaa-team-st-lawrence,
+.thread-card.ncaa-team-st-lawrence {
+  --shark-teal:   #9d2235;
+  --shark-orange: #000000;
+  --shark-green:  #f0d2d7;
+  --shark-deep:   #56131d;
+  --shark-slate:  #f9eef0;
+
+  --accent-primary:        #9d2235;
+  --accent-primary-soft:   rgba(157,34,53,0.22);
+  --accent-primary-border: rgba(157,34,53,0.9);
+
+  --accent-secondary:      #000000;
+  --accent-secondary-soft: rgba(0,0,0,0.55);
+}
+
+/* =====================================================
+   UConn
+===================================================== */
+body.theme-team-uconn,
+.rankings-table__row.ncaa-team-uconn,
+.stats-table__row.ncaa-team-uconn,
+.thread-card.ncaa-team-uconn {
+  --shark-teal:   #003c71;
+  --shark-orange: #c8102e;
+  --shark-green:  #eac7ce;
+  --shark-deep:   #001e3a;
+  --shark-slate:  #f2f6fb;
+
+  --accent-primary:        #003c71;
+  --accent-primary-soft:   rgba(0,60,113,0.22);
+  --accent-primary-border: rgba(0,60,113,0.9);
+
+  --accent-secondary:      #c8102e;
+  --accent-secondary-soft: rgba(200,16,46,0.55);
+}
+
+/* =====================================================
+   UMass Lowell
+===================================================== */
+body.theme-team-umass-lowell,
+.rankings-table__row.ncaa-team-umass-lowell,
+.stats-table__row.ncaa-team-umass-lowell,
+.thread-card.ncaa-team-umass-lowell {
+  --shark-teal:   #003da5;
+  --shark-orange: #d50032;
+  --shark-green:  #ebc7cd;
+  --shark-deep:   #001f54;
+  --shark-slate:  #f0f5ff;
+
+  --accent-primary:        #003da5;
+  --accent-primary-soft:   rgba(0,61,165,0.22);
+  --accent-primary-border: rgba(0,61,165,0.9);
+
+  --accent-secondary:      #d50032;
+  --accent-secondary-soft: rgba(213,0,50,0.55);
+}
+
+/* =====================================================
+   Vermont
+===================================================== */
+body.theme-team-vermont,
+.rankings-table__row.ncaa-team-vermont,
+.stats-table__row.ncaa-team-vermont,
+.thread-card.ncaa-team-vermont {
+  --shark-teal:   #006747;
+  --shark-orange: #cfc493;
+  --shark-green:  #f5efd9;
+  --shark-deep:   #003726;
+  --shark-slate:  #f7f8f0;
+
+  --accent-primary:        #006747;
+  --accent-primary-soft:   rgba(0,103,71,0.22);
+  --accent-primary-border: rgba(0,103,71,0.9);
+
+  --accent-secondary:      #cfc493;
+  --accent-secondary-soft: rgba(207,196,147,0.55);
+}
+
+/* =====================================================
+   Western Michigan
+===================================================== */
+body.theme-team-western-mich,
+.rankings-table__row.ncaa-team-western-mich,
+.stats-table__row.ncaa-team-western-mich,
+.thread-card.ncaa-team-western-mich {
+  --shark-teal:   #9d873c;
+  --shark-orange: #000000;
+  --shark-green:  #ece6c7;
+  --shark-deep:   #4f421e;
+  --shark-slate:  #f9f7ef;
+
+  --accent-primary:        #9d873c;
+  --accent-primary-soft:   rgba(157,135,60,0.22);
+  --accent-primary-border: rgba(157,135,60,0.9);
+
+  --accent-secondary:      #000000;
+  --accent-secondary-soft: rgba(0,0,0,0.55);
+}
+
+/* =====================================================
+   Wisconsin
+===================================================== */
+body.theme-team-wisconsin,
+.rankings-table__row.ncaa-team-wisconsin,
+.stats-table__row.ncaa-team-wisconsin,
+.thread-card.ncaa-team-wisconsin {
+  --shark-teal:   #740307;
+  --shark-orange: #c5050c;
+  --shark-green:  #f1c9cf;
+  --shark-deep:   #740307;
+  --shark-slate:  #fceeef;
+  --border-subtle: #ffffff;
+  --accent-primary:        #740307;
+  --accent-primary-soft:   rgba(197,5,12,0.22);
+  --accent-primary-border: rgba(197,5,12,0.9);
+  --accent-primary-border: #ffffff;
+
+  --accent-secondary:      #c5050c;
+  --accent-secondary-soft: rgba(255,255,255,0.15);
+}
+
+/* =====================================================
+   Yale
+===================================================== */
+body.theme-team-yale,
+.rankings-table__row.ncaa-team-yale,
+.stats-table__row.ncaa-team-yale,
+.thread-card.ncaa-team-yale {
+  --shark-teal:   #00356b;
+  --shark-orange: #c0d1e0;
+  --shark-green:  #e5ecf3;
+  --shark-deep:   #001a36;
+  --shark-slate:  #f3f6fa;
+
+  --accent-primary:        #00356b;
+  --accent-primary-soft:   rgba(0,53,107,0.22);
+  --accent-primary-border: rgba(0,53,107,0.9);
+
+  --accent-secondary:      #c0d1e0;
+  --accent-secondary-soft: rgba(192,209,224,0.55);
+}
+/* =====================================================
+   Union (NY)
+===================================================== */
+body.theme-team-union-ny,
+.rankings-table__row.ncaa-team-union-ny,
+.stats-table__row.ncaa-team-union-ny,
+.thread-card.ncaa-team-union-ny {
+  --shark-teal:   #7c0a02;
+  --shark-orange: #000000;
+  --shark-green:  #efcfcc;
+  --shark-deep:   #3f0501;
+  --shark-slate:  #f8eceb;
+
+  --accent-primary:        #7c0a02;
+  --accent-primary-soft:   rgba(124,10,2,0.22);
+  --accent-primary-border: rgba(124,10,2,0.9);
+
+  --accent-secondary:      #000000;
+  --accent-secondary-soft: rgba(0,0,0,0.55);
+}
+
+/* =====================================================
+   Canisius
+===================================================== */
+body.theme-team-canisius,
+.rankings-table__row.ncaa-team-canisius,
+.stats-table__row.ncaa-team-canisius,
+.thread-card.ncaa-team-canisius {
+  --shark-teal:   #002f6c;
+  --shark-orange: #ffb81c;
+  --shark-green:  #ffeab0;
+  --shark-deep:   #001b3c;
+  --shark-slate:  #f2f6ff;
+
+  --accent-primary:        #002f6c;
+  --accent-primary-soft:   rgba(0,47,108,0.22);
+  --accent-primary-border: rgba(0,47,108,0.9);
+
+  --accent-secondary:      #ffb81c;
+  --accent-secondary-soft: rgba(255,184,28,0.55);
+}
+
+/* =====================================================
+   Clarkson
+===================================================== */
+body.theme-team-clarkson,
+.rankings-table__row.ncaa-team-clarkson,
+.stats-table__row.ncaa-team-clarkson,
+.thread-card.ncaa-team-clarkson {
+  --shark-teal:   #0c4a2e;
+  --shark-orange: #f0b323;
+  --shark-green:  #e8f3ec;
+  --shark-deep:   #062f1d;
+  --shark-slate:  #f4f7f1;
+
+  --accent-primary:        #0c4a2e;
+  --accent-primary-soft:   rgba(12,74,46,0.22);
+  --accent-primary-border: rgba(12,74,46,0.9);
+
+  --accent-secondary:      #f0b323;
+  --accent-secondary-soft: rgba(240,179,35,0.55);
+}
+
+/* =====================================================
+   Colgate
+===================================================== */
+body.theme-team-colgate,
+.rankings-table__row.ncaa-team-colgate,
+.stats-table__row.ncaa-team-colgate,
+.thread-card.ncaa-team-colgate {
+  --shark-teal:   #862633;
+  --shark-orange: #ffffff;
+  --shark-green:  #f7d9dd;
+  --shark-deep:   #4b151d;
+  --shark-slate:  #fceff1;
+
+  --accent-primary:        #862633;
+  --accent-primary-soft:   rgba(134,38,51,0.22);
+  --accent-primary-border: rgba(134,38,51,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Holy Cross
+===================================================== */
+body.theme-team-holy-cross,
+.rankings-table__row.ncaa-team-holy-cross,
+.stats-table__row.ncaa-team-holy-cross,
+.thread-card.ncaa-team-holy-cross {
+  --shark-teal:   #582c83;
+  --shark-orange: #ffffff;
+  --shark-green:  #ebdef7;
+  --shark-deep:   #351a4d;
+  --shark-slate:  #f8f2ff;
+
+  --accent-primary:        #582c83;
+  --accent-primary-soft:   rgba(88,44,131,0.22);
+  --accent-primary-border: rgba(88,44,131,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Lake Superior State
+===================================================== */
+body.theme-team-lake-superior-st,
+.rankings-table__row.ncaa-team-lake-superior-st,
+.stats-table__row.ncaa-team-lake-superior-st,
+.thread-card.ncaa-team-lake-superior-st {
+  --shark-teal:   #0033a0;
+  --shark-orange: #ffc72c;
+  --shark-green:  #ffe7a4;
+  --shark-deep:   #001a54;
+  --shark-slate:  #f3f6ff;
+
+  --accent-primary:        #0033a0;
+  --accent-primary-soft:   rgba(0,51,160,0.22);
+  --accent-primary-border: rgba(0,51,160,0.9);
+
+  --accent-secondary:      #ffc72c;
+  --accent-secondary-soft: rgba(255,199,44,0.55);
+}
+
+/* =====================================================
+   Lindenwood
+===================================================== */
+body.theme-team-lindenwood-mo,
+.rankings-table__row.ncaa-team-lindenwood-mo,
+.stats-table__row.ncaa-team-lindenwood-mo,
+.thread-card.ncaa-team-lindenwood-mo {
+  --shark-teal:   #000000;
+  --shark-orange: #b9975b;
+  --shark-green:  #efe3cd;
+  --shark-deep:   #1a1205;
+  --shark-slate:  #faf6ee;
+
+  --accent-primary:        #000000;
+  --accent-primary-soft:   rgba(0,0,0,0.33);
+  --accent-primary-border: rgba(0,0,0,0.9);
+
+  --accent-secondary:      #b9975b;
+  --accent-secondary-soft: rgba(185,151,91,0.55);
+}
+
+/* =====================================================
+   Maine
+===================================================== */
+body.theme-team-maine,
+.rankings-table__row.ncaa-team-maine,
+.stats-table__row.ncaa-team-maine,
+.thread-card.ncaa-team-maine {
+  --shark-teal:   #1f3a93;
+  --shark-orange: #bf0a30;
+  --shark-green:  #e7c7cf;
+  --shark-deep:   #0e1c4e;
+  --shark-slate:  #f3f6ff;
+
+  --accent-primary:        #1f3a93;
+  --accent-primary-soft:   rgba(31,58,147,0.22);
+  --accent-primary-border: rgba(31,58,147,0.9);
+
+  --accent-secondary:      #bf0a30;
+  --accent-secondary-soft: rgba(191,10,48,0.55);
+}
+
+/* =====================================================
+   Mercyhurst
+===================================================== */
+body.theme-team-mercyhurst,
+.rankings-table__row.ncaa-team-mercyhurst,
+.stats-table__row.ncaa-team-mercyhurst,
+.thread-card.ncaa-team-mercyhurst {
+  --shark-teal:   #00594c;
+  --shark-orange: #c6b784;
+  --shark-green:  #f0ead7;
+  --shark-deep:   #002f27;
+  --shark-slate:  #f7f5ef;
+
+  --accent-primary:        #00594c;
+  --accent-primary-soft:   rgba(0,89,76,0.22);
+  --accent-primary-border: rgba(0,89,76,0.9);
+
+  --accent-secondary:      #c6b784;
+  --accent-secondary-soft: rgba(198,183,132,0.55);
+}
+
+/* =====================================================
+   Merrimack
+===================================================== */
+body.theme-team-merrimack,
+.rankings-table__row.ncaa-team-merrimack,
+.stats-table__row.ncaa-team-merrimack,
+.thread-card.ncaa-team-merrimack {
+  --shark-teal:   #003263;
+  --shark-orange: #ffcc00;
+  --shark-green:  #ffe798;
+  --shark-deep:   #001a36;
+  --shark-slate:  #eef3ff;
+
+  --accent-primary:        #003263;
+  --accent-primary-soft:   rgba(0,50,99,0.22);
+  --accent-primary-border: rgba(0,50,99,0.9);
+
+  --accent-secondary:      #ffcc00;
+  --accent-secondary-soft: rgba(255,204,0,0.55);
+}
+
+/* =====================================================
+   Miami (OH)
+===================================================== */
+body.theme-team-miami-oh,
+.rankings-table__row.ncaa-team-miami-oh,
+.stats-table__row.ncaa-team-miami-oh,
+.thread-card.ncaa-team-miami-oh {
+  --shark-teal:   #c8102e;
+  --shark-orange: #ffffff;
+  --shark-green:  #f9d0d6;
+  --shark-deep:   #720618;
+  --shark-slate:  #fcecee;
+
+  --accent-primary:        #c8102e;
+  --accent-primary-soft:   rgba(200,16,46,0.22);
+  --accent-primary-border: rgba(200,16,46,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   Ferris State
+===================================================== */
+body.theme-team-ferris-st,
+.rankings-table__row.ncaa-team-ferris-st,
+.stats-table__row.ncaa-team-ferris-st,
+.thread-card.ncaa-team-ferris-st {
+  --shark-teal:   #ba0c2f;
+  --shark-orange: #f1be48;
+  --shark-green:  #fde6b5;
+  --shark-deep:   #680618;
+  --shark-slate:  #fdf5e8;
+
+  --accent-primary:        #ba0c2f;
+  --accent-primary-soft:   rgba(186,12,47,0.22);
+  --accent-primary-border: rgba(186,12,47,0.9);
+
+  --accent-secondary:      #f1be48;
+  --accent-secondary-soft: rgba(241,190,72,0.55);
+}
+
+/* =====================================================
+   Harvard
+===================================================== */
+body.theme-team-harvard,
+.rankings-table__row.ncaa-team-harvard,
+.stats-table__row.ncaa-team-harvard,
+.thread-card.ncaa-team-harvard {
+  --shark-teal:   #a41034;
+  --shark-orange: #ffffff;
+  --shark-green:  #f6d6dd;
+  --shark-deep:   #5c081d;
+  --shark-slate:  #fceef1;
+
+  --accent-primary:        #a41034;
+  --accent-primary-soft:   rgba(164,16,52,0.22);
+  --accent-primary-border: rgba(164,16,52,0.9);
+
+  --accent-secondary:      #ffffff;
+  --accent-secondary-soft: rgba(255,255,255,0.55);
+}
